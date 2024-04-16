@@ -1,0 +1,62 @@
+.container {
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 10px 15px 25px 20px;
+  /* height: 140px; */
+  height: auto;
+}
+.container h1 {
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 214.286% */
+}
+.container span {
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  padding-top: 30px;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 46px;
+}
+.editBtn {
+  width: 121px;
+  height: 38px;
+  border-radius: 5px;
+  background: #0fc3ed;
+  color: #fff;
+  border: none;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.editBtn:hover {
+  background: #1daaca;
+}
+
+@media screen and (max-width: 736px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+}

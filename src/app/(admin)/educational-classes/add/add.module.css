@@ -1,0 +1,29 @@
+
+.addSection {
+  width: 100%;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0 30px 0;
+}
+
+.imageContainer .image {
+  max-width: 140px;
+  max-height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.formContainer {
+  height: 67vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+@media screen and (max-width: 736px) {
+  .addSection {
+    width: 100%;
+  }
+}

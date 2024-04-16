@@ -1,0 +1,98 @@
+.modalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  position: fixed;
+  background: #0000002b;
+  top: 0;
+  left: 0;
+  z-index: 12;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 5px 10px 80px #00000041;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 786px;
+  margin: auto;
+  gap: 30px;
+}
+
+.modal button {
+  /* all: unset; */
+  width: 240px;
+  height: 55px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  align-self: center;
+  font-size: 16px;
+  font-family: "Roboto";
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modal .title {
+  font-family: "Roboto";
+  text-align: center;
+  color: #585858;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+.modal .message {
+  font-family: "Roboto";
+  font-size: 16px;
+  text-align: center;
+  color: #585858;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+@media screen and (max-width: 736px) {
+  .modal {
+    width: 318px;
+    height: 175.69px;
+    padding: inherit;
+    gap: inherit;
+    padding-top: 38px;
+  }
+
+  .modal .title {
+    font-style: normal;
+    font-size: 14px;
+    line-height: inherit;
+    margin-bottom: 21px;
+    font-family: "Roboto";
+  }
+
+  .modal .message {
+    font-style: normal;
+    font-size: 12px;
+    line-height: inherit;
+    margin-bottom: 35px;
+    font-family: "Roboto";
+  }
+
+  .modal button {
+    width: 112.44px;
+    height: 25.66px;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 14px;
+    font-family: "Roboto";
+    font-style: normal;
+    letter-spacing: 0.08em;
+  }
+}

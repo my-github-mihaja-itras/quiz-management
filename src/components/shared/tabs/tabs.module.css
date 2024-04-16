@@ -1,0 +1,106 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.container .tabsHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.container .navTabs {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 46px;
+}
+
+.container .tab {
+  position: relative;
+  width: fit-content;
+  height: 30px;
+  cursor: pointer;
+}
+
+.container .tabActive {
+  position: relative;
+  width: fit-content;
+  height: 20px;
+  cursor: pointer;
+}
+
+.container .tab .label {
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.container .tabActive .label {
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #0fc3ed;
+}
+
+.container .tabContent {
+  width: 100%;
+  height: 100%;
+  padding-top: 15px;
+  /* display: flex;
+  justify-content: space-around;
+  flex-direction: column; */
+}
+
+.container .btnBack {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: transparent;
+}
+.container .btnBack:hover {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: #eee;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 736px) {
+  .container .navTabs {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 0;
+  }
+  .container .tab {
+    width: 100%;
+  }
+  .container .tabActive {
+    width: 100%;
+  }
+  .container .tabsHeader {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+}

@@ -1,0 +1,81 @@
+.formContainer {
+  padding: 20px;
+  width: max-content;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.formHeader {
+  width: 360px;
+  color: #0231a8;
+  font-family: Gill Sans MT;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 125% */
+  margin-bottom: 46px;
+  /* margin-bottom: 77px; */
+}
+.formContent {
+}
+
+.formSubmit {
+  margin: 0px 0 20px 0;
+}
+
+.texteCenter {
+  color: #909090;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.formMessage {
+  width: 360px;
+  min-height: 30px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: #ee0d0d;
+  font-family: Lato;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  height: fit-content;
+}
+
+.formMessage a,
+.formMessage a:link,
+.formMessage a:visited {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+.textInfo {
+  width: 360px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 24px 0 10px 0;
+}
+.texteCenter:hover{
+  color: #0231a8;
+}
+
+
+@media screen and (max-width: 780px) {
+  .formContainer {
+    padding: 20px;
+    width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }  
+}

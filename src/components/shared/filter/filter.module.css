@@ -1,0 +1,376 @@
+.container {
+  width: 300px;
+  height: auto;
+  max-height: 91vh;
+  overflow-y: scroll;
+  background: #fff;
+  padding: 10px 20px 20px 20px;
+}
+
+/* BUTTON HEADER  */
+.btnClose {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  right: 10px;
+}
+
+.btnClose button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+
+.btnClose button:hover {
+  border: none;
+  background: #f0f0f0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* INPUT DATE FILTER */
+.dateFilter .title {
+  color: #0231a8;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.dateFilter .dateInput {
+  margin: 35px 0 25px 0;
+}
+
+/* FILTER CHOICE  */
+.filterChoice .title {
+  color: #0231a8;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.filterChoice .selectInput {
+  margin: 5px 0;
+}
+
+.filterChoice .selectInput .selectController {
+  margin-bottom: 25px;
+}
+
+.filterChoice .selectInput label {
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  position: relative;
+  bottom: -5px;
+  left: 3px;
+}
+
+.my3 {
+  margin: 10px 0 35px 0;
+}
+
+/* FILTER LIST */
+.filterList {
+  margin: -15px 0;
+}
+
+/* FILTER SUBTITLE */
+.filterList .filterSubtitle {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  /* text-align: center; */
+  align-content: center;
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  background: #4042e2;
+  padding: 0px 8px;
+  margin: 10px 0;
+}
+.filterSubtitle .filterClose {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+}
+.filterSubtitle .filterClose button {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.filterSubtitle .filterClose button:hover {
+  background: #787ac7;
+}
+
+.filterSubtitle .filterClose span {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  color: #fff;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0 5px;
+}
+
+.filterSubtitle .filterAction {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.filterSubtitle .filterAction:hover {
+  background: #787ac7;
+}
+.filterSubtitle .filterAction button {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-size: large;
+}
+
+.hide {
+  display: none;
+}
+
+/* FILTER CONTENT */
+.filterContent {
+  border: 1px solid #eee;
+  padding: 0px 20px;
+  margin-bottom: 25px;
+}
+
+.filterItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.filterItem .filterField {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filterItem .filterField .itemLabel {
+  color: #5c5c5c;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 5px;
+}
+/* FILTER CHECKBOX */
+
+.filterItem input[type="checkbox"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  content: none;
+}
+
+.filterItem input[type="checkbox"]:before {
+  content: "\f00c";
+  color: transparent !important;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #eee;
+  position: relative;
+  top: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.filterItem input[type="checkbox"]:checked:before {
+  color: transparent !important;
+  width: 12px;
+  height: 12px;
+  background: #0fc3ed;
+  border: 1px solid #0fc3ed;
+  background-image: url("/resources/icons/CheckBox.svg");
+  background-size: 130% 100%; /* Ajustez la taille de l'icône */
+  background-position: center center; /* Centrez l'icône */
+}
+
+.filterItem .itemCount {
+  color: #b3b3b3;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 2px;
+}
+
+/* DATE FILTER  */
+
+.dateFilter {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.dateSelect {
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.dateSelect label {
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  position: relative;
+  bottom: -5px;
+  left: 3px;
+}
+.dateSelect .inputSelect {
+  /* width: 260px; */
+  /* position: absolute; */
+}
+
+.centerChild {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.dateFilterContent {
+  width: 100%;
+  background: #f7f7f7;
+  padding: 8px 13px 13px 13px;
+}
+
+.dateFilterContent .inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.mb1 {
+  margin-bottom: 6px;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.inputContainer label {
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.inputContainer input {
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #f7f7f7;
+  background: #fff;
+}
+
+.inputContainer .errorInput input {
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #d35151;
+  background: #fff;
+}
+
+.inputContainer input:hover {
+  border: 1px solid #0fc3ed;
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 736px) {
+  .container {
+    background: #fff;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+    border: 1px solid #eee;
+    position: absolute;
+    z-index: 1;
+    top: 200px;
+  }
+
+  .btnClose {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    right: 40px;
+  }
+}

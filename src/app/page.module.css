@@ -1,0 +1,26 @@
+.container {
+  background-color: #f7f7f7;
+}
+
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  height: 100vh;
+}
+
+.errorContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorMessage {
+  text-align: center;
+  line-height: 20px;
+  word-spacing: 20;
+}

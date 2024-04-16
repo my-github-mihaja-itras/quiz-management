@@ -1,0 +1,6 @@
+.addFormContainer {
+  height: 67vh;
+  width: 100%;
+
+  scrollbar-width: thin;
+}

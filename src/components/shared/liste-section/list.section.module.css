@@ -1,0 +1,264 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  color: #333;
+  font-family: "Roboto";
+  font-style: normal;
+  line-height: normal;
+  box-sizing: border-box;
+}
+
+.content .header {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.tableHeaderLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  row-gap: 20px;
+}
+
+.tableHeaderRight {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tableSearch {
+  width: 220px;
+  height: 36px;
+  border-radius: 5px;
+  background: #f7f7f7;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+
+  border-radius: 5px;
+  border: none;
+}
+.tableSearch:focus {
+  background: #fff;
+  border: 1px solid #d4e1ff;
+}
+.tableSearch:focus-within {
+  background: #fff;
+  border: 1px solid #d4e1ff;
+}
+
+.tableSearch input {
+  border: none;
+  border-radius: 5px;
+  background: #f7f7f7;
+  padding-left: 10px;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #b4b4b4;
+}
+
+.tableSearch input:focus {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #949494;
+}
+.tableSearch .tableSearchBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border-radius: 5px;
+  width: 36px;
+  border: none;
+  background: transparent;
+  color: #5c5c5c;
+  cursor: pointer;
+}
+
+.tableFilter {
+  width: auto;
+  height: 36px;
+  box-sizing: border-box;
+  margin: 0 10px;
+}
+
+.tableFilter button {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: none;
+
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+  color: #0231a8;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  gap: 5px;
+}
+
+.tableFilter button:hover {
+  width: 100%;
+  height: 100%;
+  background: #f0efef;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.tableExport {
+  width: auto;
+  height: 36px;
+  box-sizing: border-box;
+  margin: 0 10px;
+}
+
+.tableExport button {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: none;
+  /* border: 1px solid #b4b4b4; */
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  gap: 5px;
+}
+
+.tableExport button:hover {
+  width: 100%;
+  height: 100%;
+  background: #f0efef;
+  border: none;
+  /* border: 1px solid #d8d8d8; */
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.tableExport button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.tableAdd {
+  width: auto;
+  height: 36px;
+  box-sizing: border-box;
+  margin: 0 10px;
+}
+
+.tableAdd button {
+  width: 100%;
+  height: 100%;
+  color: #0fc3ed;
+  background: #ffffff;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  gap: 5px;
+}
+
+.tableAdd button:hover {
+  width: 100%;
+  height: 100%;
+  color: #0fc3ed;
+  background: #f0efef;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.table {
+  position: relative;
+}
+
+.table .totalNumber {
+  position: absolute;
+  color: #0231a8;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  left: 0;
+  bottom: 18px;
+}
+
+@media screen and (max-width: 736px) {
+  .content .header {
+    height: 40px;
+    width: 100%;
+  }
+  .tableSearch {
+    width: auto;
+  }
+  .tableFilter button {
+    width: auto;
+  }
+
+  .tableAdd button {
+    width: auto;
+  }
+}

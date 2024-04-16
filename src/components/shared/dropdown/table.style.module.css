@@ -1,0 +1,291 @@
+.container {
+  width: 100%;
+  height: 800px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1366px) {
+  .container {
+    width: 100%;
+    height: 800px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .filterContainer {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    margin-left: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+.contentHeader {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.tableTitle {
+  color: #333;
+  font-family: "Roboto";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-wrap: nowrap;
+  margin: 0 0 13px 0;
+}
+
+.contentHeader .tableHeaderLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  row-gap: 20px;
+}
+
+.contentHeader .tableHeaderRight {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.contentHeader .tableExport {
+  width: 100px;
+  height: 36px;
+  box-sizing: border-box;
+  margin: 0 10px;
+}
+
+.contentHeader .tableExport button {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: none;
+  /* border: 1px solid #b4b4b4; */
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.contentHeader .tableExport button:hover {
+  width: 100%;
+  height: 100%;
+  background: #f0efef;
+  border: none;
+  /* border: 1px solid #d8d8d8; */
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.contentHeader .tableAdd {
+  width: 100px;
+  height: 36px;
+  box-sizing: border-box;
+  margin: 0 10px;
+}
+
+.contentHeader .tableAdd button {
+  width: 100%;
+  height: 100%;
+  background: #0fc3ed;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  padding: 0 15px;
+}
+
+.contentHeader .tableAdd button:hover {
+  width: 100%;
+  height: 100%;
+  background: #11b1d4;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.contentHeader .tableSearch {
+  width: 220px;
+  height: 36px;
+  border-radius: 5px;
+  background: #fff;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+
+  border-radius: 5px;
+  border: 1px solid #b4b4b4;
+}
+
+.tableSearch:focus-within {
+  border: 1px solid #0231a88f;
+}
+
+.contentHeader .tableSearch input {
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  padding-left: 10px;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #0231a8;
+}
+.contentHeader .tableSearch input:focus {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #0231a8;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.contentHeader .tableSearch .tableSearchBtn {
+  border-radius: 5px;
+  width: 36px;
+  border: none;
+  background: #fff;
+  color: rgba(2, 49, 168, 0.4);
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+.contentHeader .tableSearch .tableSearchBtn:hover {
+  border-radius: 0 3px 3px 0;
+  width: 36px;
+  border: none;
+  background: #fafafa;
+  color: rgba(2, 49, 168, 0.4);
+  cursor: pointer;
+  padding-top: 5px;
+}
+.contentTable {
+  width: 100%;
+  height: 700px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.contentTable:first-child {
+  height: 100%;
+}
+.loadingText {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.sc-dmlpXa .koyZDM {
+}
+
+.tableHeader {
+}
+
+.tableBody {
+}
+
+.tableFooter {
+}
+
+.tableCell {
+}
+
+.tableRow {
+}
+
+.tableAction {
+}
+.actionBtnContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+}
+
+.actionBtn {
+  border: none;
+  width: 36px;
+  height: 30px;
+  background: #f5f5f557;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dateStyle {
+  gap: 5px;
+}
+.dateStyle span {
+  color: #b4b4b4;
+}
+
+.TableRow {
+  background: #000;
+}
+
+.filterContainer {
+  width: 268px;
+  height: 100%;
+  background: #fff;
+  margin-left: 20px;
+  padding: 20px;
+  border-radius: 5px;
+}

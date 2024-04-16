@@ -1,0 +1,18 @@
+.scrollableContainer {
+  background-color: rgb(235, 12, 12);
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.scrollableItem {
+  background-color: blueviolet;
+  min-height: 50px;
+  border: 1px solid #cccccc;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.comment {
+  background-color: aqua;
+  height: 200px;
+}

@@ -1,0 +1,108 @@
+.formTitle {
+  color: #b4b4b4;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.formContainer {
+  margin-top: 10px;
+}
+
+.formField {
+  width: 100%;
+  max-height: 60px;
+  margin: 12px 0 0 0;
+}
+
+.formField .label {
+  width: 100%;
+  height: 30px;
+  color: #79797b;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.formField .input {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 0 10px;
+  color: #5c5c5c;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.formField .inputError {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ee0d0d;
+  background: #fff;
+  padding: 0 10px;
+  color: #5c5c5c;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.formButton {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.formButton .confirmButton {
+  width: 90px;
+  height: 36px;
+  border-radius: 5px;
+  background: #0231a8;
+  border: none;
+  color: #fff;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.formButton .cancelButton {
+  width: 90px;
+  height: 36px;
+  border-radius: 5px;
+  background: #0fc3ed;
+  border: none;
+  color: #fff;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.errorMessage {
+  color: #ee0d0d;
+  font-family: "Roboto";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: end;
+  margin: -5px 5px 0 0;
+}

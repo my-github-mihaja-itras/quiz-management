@@ -1,0 +1,221 @@
+.container {
+  background-color: #ffffff;
+  padding: 17px;
+  max-height: 300px;
+  z-index: 0;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 46px;
+  margin-top: 20px;
+}
+
+.container .title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  color: #5c5c5c;
+}
+
+.editBtn {
+  width: 121px;
+  height: 38px;
+  border-radius: 5px;
+  background: #0fc3ed;
+  color: #fff;
+  border: none;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.editBtn:hover {
+  background: #1daaca;
+}
+
+.commentaryContainer {
+  margin-top: 20px;
+  /* background-color: purple; */
+}
+.commentaryContainer .title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #5c5c5c;
+  margin-bottom: 20px;
+}
+.commentaryContainer .list {
+  margin-right: -10px;
+  /* background-color: red; */
+  padding-right: 10px;
+  overflow-y: scroll;
+  max-height: 130px;
+}
+.commentaryContainer .item {
+  margin-bottom: 26px;
+}
+
+.commentaryContainer .item .top {
+  display: flex;
+  flex-direction: row;
+  height: 24px;
+  justify-content: space-between;
+}
+.containerLeft {
+  display: flex;
+  flex-direction: row;
+}
+.containerRight {
+  margin-right: -10px;
+}
+.containerUser {
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: row;
+  min-width: 100px;
+  gap: 7px;
+  padding-right: 23px;
+}
+
+.container .image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.container .text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  color: #5c5c5c;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.containerDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* background-color: bisque; */
+  gap: 9px;
+}
+.containerDate .point {
+  width: 4px;
+  height: 4px;
+  background: #d9d9d9;
+}
+.containerDate .text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #5c5c5c;
+}
+
+.commentaryContainer .item .bottom {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #5c5c5c;
+  margin-top: 13px;
+  max-width: 746px;
+  word-wrap: break-word;
+}
+
+.commentaryContainer .item .bottom textarea {
+  width: 100%;
+  max-height: 35px;
+  height: auto;
+  font-family: "Roboto";
+  font-size: 12px;
+  color: #585858;
+  cursor: text;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid #e7dede;
+  word-break: break-all;
+  box-sizing: border-box;
+  outline: none;
+  resize: none;
+}
+
+.commentaryContainer .item .bottom textarea:focus {
+  border-color: #0fc3ed;
+}
+.commentaryContainer .item .bottom .layout {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 14px;
+  /* background-color: red; */
+}
+.commentaryContainer .item .bottom .containerButton {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  /* background-color: #0231a8; */
+}
+
+.commentaryContainer .item .bottom .containerButton button {
+  width: 100px;
+  height: 36px;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.btnCancel {
+  background: #0231a8;
+}
+.btnSave {
+  background: #0fc3ed;
+}
+
+@media screen and (max-width: 736px) {
+  .container {
+    max-height: 350px;
+  }
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 26px;
+    justify-content: center;
+    align-items: center;
+  }
+  .commentaryContainer .item .bottom {
+    max-width: 285px;
+  }
+}

@@ -1,0 +1,69 @@
+.banner {
+  width: 100%;
+  height: 14em;
+  background-image: url("/../resources/dashboard_background.png");
+  background-color: #e4ebfd;
+  background-repeat: no-repeat;
+  background-size: 100% 90%;
+  background-position: bottom;
+  padding: 4em 15% 0px 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-radius: 10px;
+}
+
+.banner p {
+  font-family: "Roboto";
+  color: #0231a8;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.banner div {
+  color: #485da9;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+}
+@media screen and (max-width: 1024px) {
+  .banner {
+    background-image: url("/resources/dashboard_background_mobile.png");
+  }
+}
+@media screen and (max-width: 736px) {
+  .banner {
+    width: 100%;
+    height: 150px;
+    background-image: url("/resources/dashboard_background_mobile.png");
+    background-color: #e4ebfd;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: bottom;
+    padding: 2em 15% 0px 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .banner p {
+    color: #0231a8;
+    font-family: "Roboto";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .banner div {
+    width: 50%;
+    color: #5c71b9;
+    font-family: "Roboto";
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}

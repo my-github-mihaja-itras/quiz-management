@@ -1,0 +1,314 @@
+.formContainer {
+  display: grid;
+  gap: 20px;
+  padding-right: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  height: 79vh;
+}
+
+.formBody {
+  width: 100%;
+  height: 100%;
+}
+
+.form .colDiv1 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.form .colDiv2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form .colDivCustom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+}
+
+.form .colDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.colCustom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5;
+}
+
+.gap0 {
+  gap: 10px;
+}
+
+.gap2 {
+  gap: 20px;
+}
+
+.gap1 {
+  gap: 16px;
+}
+
+.gap4 {
+  gap: 40px;
+}
+
+.my5 {
+  margin: 30px 0 5px 0;
+}
+
+.my2 {
+  margin: 10px 0 15px 0;
+}
+
+.pr1 {
+  padding-right: 16px;
+}
+
+.inputGroupTwo {
+  margin-top: 3px;
+}
+
+.fieldLabel {
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  color: #5c5c5c;
+}
+
+.formFields {
+  width: 100%;
+
+  /* background-color: red; */
+}
+
+.fieldBlock {
+  display: flex;
+  flex-direction: row;
+  /* gap: 10px; */
+  /* background-color: rebeccapurple; */
+}
+
+.removeField {
+  display: flex;
+  justify-content: center;
+}
+
+.removeField button {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.addField {
+  width: auto;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.action {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 46px;
+  margin-top: 20px;
+}
+
+.action .editBtn {
+  width: 200px;
+  height: 46px;
+  border-radius: 5px;
+  background: #0fc3ed;
+
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-family: "Lato";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.action .editBtn:hover {
+  background: #1daaca;
+}
+
+.action .saveBtn {
+  width: 200px;
+  height: 46px;
+  border-radius: 5px;
+  background: #0231a8;
+  color: #fff;
+  border: none;
+  text-align: center;
+  font-family: "Lato";
+  font-size: 14px;
+}
+
+.textAreaLabel {
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  pointer-events: none;
+  transition: top 0.3s ease, linear 0.3s ease;
+}
+
+.formBody textarea {
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+  min-height: 10vh;
+  padding: 10px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  white-space: pre-wrap;
+  outline: none;
+  resize: none;
+}
+
+.formBody textarea:focus {
+  outline: 1px solid #0fc3ed;
+}
+
+.buttonContent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Mobile break point  */
+
+@media screen and (max-width: 736px) {
+  .formContainer {
+    padding-right: 0px;
+  }
+
+  .formBody {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0 10px 0px;
+  }
+
+  .form .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDivCustom {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .InputNumber {
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+
+  .gap1 {
+    gap: 30px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+
+  .marginTop {
+    margin-top: 35px;
+  }
+
+  .buttonContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .action {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+  }
+  .action .editBtn {
+    width: 100%;
+  }
+  .action .saveBtn {
+    width: 100%;
+  }
+}
+
+/* Ordinateur portable standard */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .form .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+
+  .gap1 {
+    gap: 40px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+}

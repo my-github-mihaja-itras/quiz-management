@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  background: #f7f7f7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  width: 2px;
+  height: 1px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  -webkit-border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: #ebebeb;
+  -webkit-border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  width: 1px;
+  background-color: #bbbbbb;
+}
+
+input[type="checkbox"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  content: none;
+}
+
+input[type="checkbox"]:before {
+  content: "\f00c";
+  color: transparent !important;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #d9d8d8;
+  position: relative;
+  top: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  background: #fff;
+}
+
+input[type="checkbox"]:checked:before {
+  color: transparent !important;
+  width: 12px;
+  height: 12px;
+  background: #0fc3ed;
+  border: 1px solid #0fc3ed;
+  background-image: url("/resources/icons/CheckBox.svg");
+  background-size: 130% 100%; /* Ajustez la taille de l'icône */
+  background-position: center center; /* Centrez l'icône */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-image: url("/resources/icons/calendar.svg");
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background-image: url("/resources/icons/Time.svg");
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+select {
+  -webkit-appearance: none;
+  width: 100px;
+  font-size: 11px;
+  border: 0;
+  height: 17px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin-right: 5px;
+  height: 35px;
+  cursor: pointer;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+select {
+  /* background-image: url("/resources/icons/CheckBox.svg"); */
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Some browsers will not display the caret when using calc, so we put the fallback first */
+  /* !important used for overriding all other customisations */
+  background: url("/resources/icons/Dropdown.svg") transparent no-repeat
+    calc(100% - 10px) !important; /* Better placement regardless of input width */
+}
+/*For IE*/
+select::-ms-expand {
+  display: none;
+}

@@ -1,0 +1,191 @@
+.formFieldContainer {
+  width: 100%;
+  /* height: 68vh; */
+}
+
+.formFieldContainer .fieldContent {
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  height: 100%;
+  max-height: 75vh;
+  margin-bottom: 20px;
+  padding-right: 16px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-color: #d9d9d9 #a8a8a8;
+  scrollbar-width: thin;
+}
+
+.form .fieldContent {
+  width: 100%;
+  /* padding: 0 10px; */
+}
+
+.form .profileContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0 30px 0;
+}
+
+.imageContainer {
+  text-align: center;
+}
+
+.imageContainer .image {
+  max-width: 140px;
+  max-height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.imageContainer .usernameText {
+  color: #585858;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 10px;
+}
+
+.statusContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.statusContainer .status {
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.statusContainer .statusForm {
+  width: 130px;
+  height: 40px;
+  background: #ffecd1;
+  border-radius: 6px;
+  border: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.statusForm::after {
+  content: "\25BC";
+  font-size: 12px;
+  color: #ff0000;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.formFieldContainer .action {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 46px;
+  margin: 10px 0;
+}
+
+.action .editBtn {
+  width: 200px;
+  height: 46px;
+  border-radius: 5px;
+  background: #0fc3ed;
+
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-family: "Lato";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.action .editBtn:hover {
+  background: #1daaca;
+}
+
+.action .saveBtn {
+  width: 200px;
+  height: 46px;
+  border-radius: 5px;
+  background: #0231a8;
+  color: #fff;
+  border: none;
+  text-align: center;
+  font-family: "Lato";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.action .saveBtn:hover {
+  background: #06277a;
+}
+@media only screen and (max-width: 1200px) {
+  .formFieldContainer {
+    width: 100%;
+    height: 100%;
+  }
+
+  .form {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: max-content;
+    padding-right: 0;
+  }
+
+  .form .image {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .form .fieldContent {
+    width: 100%;
+    height: 100%;
+  }
+  .form {
+    width: 100%;
+    padding-right: 0;
+  }
+  .formFieldContainer .action {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    gap: 46px;
+    margin: 10px 0;
+  }
+}

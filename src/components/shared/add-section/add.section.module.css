@@ -1,0 +1,85 @@
+.containerPage {
+  width: 100%;
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  color: #333;
+  font-family: "Roboto";
+  font-style: normal;
+  line-height: normal;
+  box-sizing: border-box;
+  /* background-color: purple; */
+}
+.container {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 20px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.container .title {
+  height: 25px;
+  color: #333;
+  font-family: "Roboto";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  /* line-height: normal; */
+  margin-bottom: 16px;
+}
+
+.container .subtitle {
+  height: 25px;
+  color: #333;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.container .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+.widthAuto {
+  width: 50%;
+}
+.btnlayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+.btnContainer {
+  /* padding-bottom: 20px; */
+}
+@media screen and (max-width: 736px) {
+  .containerPage {
+    height: fit-content;
+  }
+  .container {
+    margin: 4px;
+  }
+  .btnlayout {
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .container .content {
+    width: 100%;
+  }
+}

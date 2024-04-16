@@ -1,0 +1,228 @@
+.formContainer {
+  display: grid;
+  gap: 20px;
+}
+
+.form {
+  /* min-width: 380px; */
+  height: fit-content;
+}
+
+.formHeader {
+  width: 100%;
+  height: 48px;
+  border-radius: 5px 5px 0px 0px;
+  background: #4042e2;
+  color: #fff;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+.formBody {
+  width: 100%;
+  height: 100%;
+}
+
+.form .colDiv1 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.form .colDiv2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form .colDivCustom {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr 2fr;
+}
+
+.form .colDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gap0 {
+  gap: 10px;
+}
+
+.gap1 {
+  gap: 16px;
+}
+
+.gap4 {
+  gap: 40px;
+}
+
+.my5 {
+  margin: 30px 0 5px 0;
+}
+
+.my2 {
+  margin: 10px 0 15px 0;
+}
+
+.pr1 {
+  padding-right: 16px;
+}
+
+.inputGroupTwo {
+  margin-top: 3px;
+}
+
+.fieldLabel {
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  color: #5c5c5c;
+}
+
+.formFields {
+  width: 100%;
+  /* max-height: 260px;
+  overflow-y: scroll; */
+  /* padding-right: 10px; */
+  /* background-color: red; */
+}
+
+.fieldBlock {
+  display: flex;
+  flex-direction: row;
+  /* gap: 10px; */
+  /* background-color: rebeccapurple; */
+}
+
+.removeField {
+  display: flex;
+  justify-content: center;
+}
+.removeField button {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.addField {
+  width: auto;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.addField button {
+  width: 100%;
+  height: 100%;
+  color: #0fc3ed;
+  background: #ffffff;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  gap: 5px;
+}
+
+.addField button:hover {
+  width: 100%;
+  height: 100%;
+  color: #0fc3ed;
+  cursor: pointer;
+}
+
+/* Mobile break point  */
+
+@media screen and (max-width: 736px) {
+  .formBody {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0 10px 10px;
+  }
+  .form .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDivCustom {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr;
+  }
+  .form .InputNumber {
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+  .gap1 {
+    gap: 30px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+  .marginTop {
+    margin-top: 35px;
+  }
+}
+
+/* Ordinateur portable standard */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .form .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+  .gap1 {
+    gap: 40px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+}

@@ -1,0 +1,14 @@
+.container {
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notFoundData {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #5c5c5c;
+}

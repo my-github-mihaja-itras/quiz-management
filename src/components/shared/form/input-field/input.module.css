@@ -1,0 +1,674 @@
+.valueWrapper {
+  background-color: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 3px;
+  height: 40px;
+}
+
+.selectWrapperDisabled {
+  background-color: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 3px;
+}
+
+.selectWrapper {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 3px;
+  margin-bottom: 30px;
+}
+
+/* .valueWrapper:focus-visible, */
+.valueWrapper:focus {
+  border: 2px solid #0fc3ed;
+}
+
+.valueWrapper input,
+.valueWrapper select {
+  all: unset;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.chipContainer {
+  width: fit-content;
+  max-height: 25px;
+  background-color: #f7f7f7;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 3px 10px 10px;
+}
+
+.chipContainer:focus-visible {
+  border: 0.5px solid #0fc3ed;
+}
+
+.chipContainer .chipBtn {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e1e1e1;
+  border-radius: 50%;
+  border: none;
+  font-family: "Roboto";
+  font-size: 12px;
+  color: #939393;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.chipContainer p {
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 5px;
+}
+
+.formInput label {
+  color: #909090;
+  font-family: "Lato";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  margin-right: 7px;
+}
+
+.formInput:focus {
+  border: none;
+}
+
+.formInput input[type="text"],
+.formInput input[type="email"],
+.formInput input[type="password"],
+.formInput input[type="date"],
+.formInput input[type="time"],
+.formInput select {
+  all: unset;
+  border: 1px solid #eeeeee;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: text;
+  border-radius: 5px;
+  padding-left: 5%;
+  min-height: 36px;
+}
+
+.formInput input[type="text"]:focus,
+.formInput input[type="email"]:focus,
+.formInput input[type="password"]:focus,
+.formInput input[type="date"]:focus,
+.formInput input[type="time"]:focus,
+.formInput select:focus {
+  border: 1px solid #0fc3ed;
+}
+
+.formInputFocused .placeholder,
+.formInputNotEmpty .placeholder,
+.formInput:focus
+  + .placeholder
+  .formInput:not(:placeholder-shown)
+  + .placeholder {
+  top: -8px;
+  left: 0%;
+  font-family: "Roboto";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.labelWhenFocused {
+  color: #0231a8 !important;
+}
+.labelWhenNotFocused {
+  color: #79797b !important;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.formGroup span {
+  position: absolute;
+  top: 33px;
+  bottom: 0;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.formGroupPass span {
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.formInputError label {
+  color: #ee0d0d;
+  font-family: "Lato";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.formInputError input[type="text"],
+.formInputError input[type="email"],
+.formInputError input[type="password"],
+.formInput input[type="time"],
+.formInputError input[type="date"],
+.formInputError select {
+  border-bottom: 1px solid #ee0d0d;
+}
+
+.formInputError .formGroup span {
+  color: #ee0d0d;
+}
+
+.errorMessage {
+  color: #ee0d0d;
+  font-family: "Lato";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+/**************** placeholder to label start ****************/
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+.inputPhoneFocused:focus {
+  border: 1px solid #0fc3ed;
+}
+.inputContainer input {
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  width: 100%;
+  height: 40px;
+}
+
+.inputContainer select {
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  padding: 0 5px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  width: 100%;
+  height: 40px;
+}
+
+.inputContainer select:invalid option:not(:first-child) {
+  font-size: 10px;
+  color: #c5c5c5;
+}
+
+.inputContainer input:focus,
+.inputContainer select:focus {
+  border: 1px solid #0fc3ed;
+  background-color: #ffffff;
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: top 0.3s ease, linear 0.3s ease;
+}
+
+.placeholderSelect {
+  position: absolute;
+  bottom: 18px;
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: top 0.3s ease, linear 0.3s ease;
+}
+
+.formInput {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #eeeeee;
+  background: #fff;
+}
+
+.formInputError {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #d35151;
+  background: #fff;
+}
+
+.formSelect {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #eeeeee;
+  background: #fff;
+  height: 32px;
+}
+
+.toggleContainer {
+  position: relative;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #eeeeee;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+.toggleContainer .togglePlaceholder {
+  position: absolute;
+  left: 0;
+  bottom: 32px;
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.toggleContainer .toggleInput {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.toggleContainer .toggleInput span {
+  color: #79797b !important;
+}
+/**************** input color start  ****************/
+.colorInputContainer {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: 40px;
+  border: 2px solid #eeeeee;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+}
+
+.childColorInputContainer {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  gap: 10px;
+}
+
+.containerIcon {
+  padding-right: 5px;
+}
+.colorInput input[type="color"] {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+}
+
+.textInputColor {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 30px;
+}
+#inputColor {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid #eeeeee;
+}
+
+#inputColor::-webkit-color-swatch {
+  display: none;
+}
+
+#inputColor::-moz-color-swatch {
+  display: none;
+}
+
+/**************** input color end  ****************/
+
+/* INPUT DROPDOWN MULTIPLE SELECT */
+.inputDropdownCheckbox {
+  position: relative;
+}
+
+.inputDropdownCheckboxError {
+  position: relative;
+}
+
+.inputDropdownCheckbox .label {
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  position: absolute;
+  top: -23px;
+}
+
+.inputDropdownContainer {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  border-radius: 5px;
+  border: 1px solid #eeeeee;
+  background: #fff;
+  padding: 0 5px;
+}
+
+.onErrors {
+  border: 1px solid #ee0d0d;
+}
+
+.inputDropdownContainer:focus-within,
+.inputDropdownContainer:focus {
+  border: 1px solid #d1defb;
+}
+
+.chipsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.spaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.spaceAround {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.chipsContainer .chipsContent {
+  width: fit-content;
+  height: 25px;
+  gap: 2px;
+  min-width: 60px;
+  border-radius: 25px;
+  background: #f7f7f7;
+  padding: 0 3px;
+  color: #5c5c5c;
+  font-family: "Roboto";
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.chipsContainer .chipsContent span {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e1e1e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #939393;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.btnDrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.dropdownContainer {
+  width: 100%;
+  height: fit-content;
+  border: 1px solid #d1defb;
+  background: #e4ebfa;
+  box-shadow: 0px 1px 1px 0px rgba(146, 167, 220, 0.25);
+  margin-top: 5px;
+  position: absolute;
+  z-index: 23;
+}
+
+.hidden {
+  display: none;
+}
+
+.dropdownContent {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  gap: 5px;
+  color: #0231a8;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  padding: 0 13px;
+}
+
+.dropdownContent:hover {
+  background: #d1defb4d;
+}
+
+.dropdowncontent input[type="checkbox"] {
+  margin-bottom: 5px;
+  background: #fff;
+}
+
+.dropdowncontent label {
+}
+
+.focused {
+  display: none;
+}
+
+.optionContainer {
+  width: 100%;
+  height: auto;
+  border: 1px solid #d1defb;
+  background: #e7edfa;
+}
+
+.optionSelect {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.reactSelectError div {
+  border-color: #e74c3c;
+}
+
+.reactSelectError:hover div {
+  border-color: #e74c3c;
+}
+ 
+.textAreaContainer {
+  /* background-color: red !important; */
+}
+ .textAreaContainer textarea {
+  all: unset;
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+  padding: 10px ;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+  background: var(--RS_Offline, #fff);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #909090;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+ 
+ .textAreaContainer textarea:focus {
+  border: 1px solid #0fc3ed;
+}
+.textAreaContainer textarea::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+.textAreaContainer textarea::-webkit-scrollbar-button{
+  height: 10px;
+  background: transparent;
+}
+
+.textAreaContainer textarea::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  -webkit-border-radius: 16px;
+}
+.textAreaContainer textarea {
+  scrollbar-color: #79797B #fff; /* thumb color and track color */
+ }
+
+.textAreaContainer textarea::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: #ebebeb;
+  -webkit-border-radius: 16px;
+}
+
+.textAreaContainer ::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+.textAreaContainer ::-webkit-scrollbar-button {
+  height: 10px;
+  background: transparent;
+}
+
+.textAreaContainer  ::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  -webkit-border-radius: 16px;
+}
+
+.textAreaContainer  ::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: #ebebeb;
+  -webkit-border-radius: 16px;
+}
+
+.textAreaContainer  ::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #79797B; 
+} 
+@media screen and (max-width: 736px) {
+  .formGroupPass span {
+    right: 8%;
+  }
+}

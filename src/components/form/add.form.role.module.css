@@ -1,0 +1,107 @@
+.layout {
+  /* background-color: red; */
+}
+.childTitle {
+  height: 25px;
+  color: #333;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 14px;
+}
+
+.containerPage {
+  max-height: 65vh;
+  overflow-y: auto;
+  /* background-color: aqua; */
+}
+.title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 30px;
+  color: #79797b;
+}
+.layoutInput {
+  /* background-color: purple; */
+}
+.inputContainer1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 46px;
+  margin-top: 39px;
+  max-width: 1002px;
+}
+
+.inputMedium {
+  max-width: 478px;
+}
+
+.inputContainer2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 46px;
+  margin-top: 39px;
+  max-width: 1002px;
+}
+.layoutGroup {
+  margin-top: 6px;
+}
+.containeChexBoxGroup {
+  margin-top: 10px;
+}
+.containeChexBoxPrivileges {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.checkAllContainer {
+  margin-top: 12px;
+}
+.texCheckBox {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  margin-left: 8px;
+}
+.layoutContainerTabPrivilege {
+  /* max-height: 350px;
+  overflow-y: auto; */
+}
+.containerTabPrivilege {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.tabPrivilege {
+  /* background-color: blue; */
+}
+
+
+
+@media screen and (max-width: 736px) {
+  .layout {
+    margin-right: -15px;
+  }
+  .layoutInput {
+    margin-right: 15px;
+  }
+  .containerTabPrivilege {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .inputContainer1 {
+    grid-template-columns: 1fr;
+  }
+
+  .inputContainer2 {
+    grid-template-columns: 1fr;
+  }
+  .inputMedium {
+   max-width: 100%;
+  }
+}

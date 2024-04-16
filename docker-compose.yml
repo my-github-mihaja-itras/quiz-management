@@ -1,0 +1,16 @@
+version: "3"
+services:
+  campus-management:
+    container_name: campus-management
+    build: ./
+    ports:
+      - "21623:3002"
+    expose:
+      - 21623
+    env_file:
+      - ./.env.local
+
+networks:
+  default:
+    external: true
+    name: cm_network

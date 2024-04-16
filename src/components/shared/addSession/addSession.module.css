@@ -1,0 +1,170 @@
+.container {
+  padding: 16px;
+  height: 70vh;
+}
+
+.title {
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 600;
+  color: #5c5c5c;
+}
+
+.courseTitle {
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 400;
+  color: #5c5c5c;
+  margin-top: 5px;
+}
+
+.btnAction {
+  width: 100%;
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+.inputCustom {
+}
+
+.placeholder {
+  color: #79797b;
+  font-family: "Roboto";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  margin-top: 12px;
+}
+
+.btn {
+  width: 100%;
+  height: 46px;
+  border-radius: 5px;
+  background: #0fc3ed;
+  color: #fff;
+  border: none;
+  font-family: "Lato";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.formBody {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px 0 0;
+}
+
+.colDiv1 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.colDiv2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.colDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gap1 {
+  gap: 16px;
+}
+
+.gap4 {
+  gap: 40px;
+}
+
+.my5 {
+  margin: 30px 0 5px 0;
+}
+.inputGroupTwo {
+  margin-top: 3px;
+}
+
+/* Mobile break point  */
+
+@media screen and (max-width: 736px) {
+  .formBody {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+  .gap1 {
+    gap: 30px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+  .marginTop {
+    margin-top: 35px;
+  }
+  .btnAction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Ordinateur portable standard */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+  .gap1 {
+    gap: 40px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+}

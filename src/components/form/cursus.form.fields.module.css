@@ -1,0 +1,198 @@
+.formContainer {
+  display: grid;
+  gap: 20px;
+  height: 72vh;
+}
+
+.form {
+  height: fit-content;
+  border-radius: 5px;
+  padding-right: 14px;
+}
+
+.formHeader {
+  width: 100%;
+  height: 48px;
+  border-radius: 5px 5px 0px 0px;
+  background: #4042e2;
+  color: #fff;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+.formBody {
+  width: 100%;
+  height: 100%;
+}
+
+.form .colDiv1 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.form .colDiv2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form .colDiv {
+  display: grid;
+  grid-template-columns: 0.99fr 0.9fr 0.045fr;
+}
+
+.form .colDivWithoutIcon {
+  display: grid;
+  grid-template-columns: 0.9fr 0.9fr ;
+  margin-right: 5px;
+}
+
+.gap1 {
+  gap: 16px;
+}
+
+.gap4 {
+  gap: 20px;
+}
+
+.my5 {
+  margin: 10px 0 5px 0;
+}
+.inputGroupTwo {
+  margin-top: 3px;
+}
+.fieldLabel {
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  color: #5c5c5c;
+}
+.btnIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+.addField {
+  width: auto;
+  height: 36px;
+  box-sizing: border-box;
+}
+.addField button {
+  width: 100%;
+  height: 100%;
+  color: #0fc3ed;
+  background: #ffffff;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  gap: 5px;
+}
+
+.addField button:hover {
+  width: 100%;
+  height: 100%;
+  color: #0fc3ed;
+  cursor: pointer;
+}
+
+.removeField {
+  display: flex;
+  justify-content: center;
+}
+.removeField button {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+}
+/* Mobile break point  */
+
+@media screen and (max-width: 736px) {
+  .formBody {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+  .form .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDivWithoutIcon {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+  .gap1 {
+    gap: 30px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+}
+
+/* Ordinateur portable standard */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .form .colDiv1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .form .colDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .inputGroupTwo {
+    margin-top: 0;
+  }
+  .gap1 {
+    gap: 40px;
+  }
+
+  .gap4 {
+    gap: 0;
+  }
+
+  .my5 {
+    margin: 30px 0 5px 0;
+  }
+}

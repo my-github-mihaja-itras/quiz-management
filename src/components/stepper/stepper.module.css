@@ -1,0 +1,134 @@
+.container {
+  width: 100%;
+  margin-left: -1em;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.steps,
+.labelWrapper {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wrapper {
+  width: 20px;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.title,
+.stepDate,
+.labelChecked {
+  white-space: nowrap;
+  font-family: "Roboto";
+}
+
+.title,
+.labelChecked {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.title {
+  color: #333333;
+}
+
+.labelChecked {
+  color: #0231ab;
+}
+
+.stepDate {
+  font-size: 12px;
+  color: #5c5c5c;
+}
+
+.step {
+  width: 24px;
+  height: 24px;
+  margin: auto;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.notChecked {
+  background-color: #f2f4f7;
+}
+
+.checked {
+  background-color: #0231ab;
+}
+
+.step .icon {
+  width: 80%;
+  margin: auto;
+}
+
+.line {
+  all: inherit;
+  height: 1px;
+  margin: 0.6em;
+  background-color: #e4e7ec;
+}
+@media screen and (max-width: 736px) {
+  .line {
+    all: inherit;
+    width: 2px;
+    height: 100px;
+    margin: 0.6em 0.6em 0.6em 0.7em;
+    border-left: 2px;
+    background-color: #e4e7ec;
+  }
+  .wrapper {
+    width: 20px;
+    height: 24px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .labelWrapper {
+    /* height: 100%; */
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 50px;
+    margin-left: -20%;
+  }
+  .steps {
+    height: 90%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* gap: 50px; */
+    align-items: center;
+  }
+  .container {
+    width: 100%;
+    /* margin-left: -1em; */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .step {
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

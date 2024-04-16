@@ -1,0 +1,156 @@
+.container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  color: #0231a8;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  /* padding-top: 10px; */
+  border-top: 1px solid #eee;
+  padding: 10px 20px 0 0;
+}
+
+.pagination {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+  gap: 5px;
+}
+.paginationNumber {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+.active {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1.5px solid #f2f6ff;
+  background: #f2f6ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginationButton {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.paginationButton button {
+  border: none;
+  text-align: center;
+  background: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.paginationButtonCenter {
+  justify-content: center;
+}
+
+.paginationButton button:hover {
+  border: none;
+  background: #f2f6ff;
+  border-radius: 50%;
+}
+
+.paginationDropdown {
+  width: 58px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1.5px solid #f2f6ff;
+  background: #f2f6ff;
+  padding: 0 5px;
+  color: #0231a8;
+
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.paginationDropdown select {
+  background: none;
+  border: none;
+  width: 50px;
+  height: 30px;
+  color: #0231a8;
+
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  outline: none;
+}
+
+.paginationDropdown .disableBtn {
+  border: none;
+  /* background: #f2f6ff; */
+  border-radius: 50%;
+  background: red;
+  cursor: none;
+}
+
+@media screen and (max-width: 736px) {
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    color: #0231a8;
+    font-family: "Roboto";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding: 5px 10px 0 0;
+    gap: 5px;
+  }
+  .container .compteur {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+  }
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    gap: 5px;
+  }
+}

@@ -1,0 +1,68 @@
+.container {
+  width: 68vw;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.container2 {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.calendar {
+  height: 80vh;
+  font-family: "Roboto";
+  color: #5c5c5c;
+}
+
+.header {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+}
+
+.header .title {
+  font-family: "Roboto";
+  color: #5c5c5c;
+}
+
+.header .courseName {
+  color: #333;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.header .btnBack {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: transparent;
+}
+.header .btnBack:hover {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: #eee;
+  cursor: pointer;
+}
