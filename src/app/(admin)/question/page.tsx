@@ -209,19 +209,9 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
     setIsOpen(true);
   };
 
-  const onEditRegistrationPeriodChange = (response: MessageModalType) => {
-    setIsSuccess(response.success as boolean);
-    setRegistrationPeriodIsModified(!registrationPeriodIsModified);
-    setMessage({
-      title: response?.title as string,
-      message: response.message as string,
-    });
-    setIsOpen(true);
-  };
-
   const tabsConstant = [
     {
-      label: "Filières",
+      label: "Question",
       content: (
         <>
           <FormFieldsEditableCursus
@@ -237,27 +227,6 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
               cursusData={cursusData}
             />
           </FormFieldsEditableCursus>
-        </>
-      ),
-    },
-    {
-      label: "Inscriptions",
-      content: (
-        <>
-          {registrationPeriodData && (
-            <RegistrationPeriodFormFields
-              data={registrationPeriodData[0]}
-              onChange={onEditRegistrationPeriodChange}
-            />
-          )}
-        </>
-      ),
-    },
-    {
-      label: "Événements",
-      content: (
-        <>
-          <AddEventFormFields onChange={onAddEventChange} />
         </>
       ),
     },
@@ -640,7 +609,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
           </Details>
 
           {activeTab == 0 ? (
-            <Processing title="Filières" titleIcon={<IconCursus />}>
+            <Processing title="Quiz" titleIcon={<IconCursus />}>
               <History
                 columns={CursusHistoryColumn}
                 data={cursusHistoryData}

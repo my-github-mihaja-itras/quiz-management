@@ -46,7 +46,7 @@ export const ROUTES = [
     usePrivilege: PrivilegeName.VIEW_COURSE,
   },
   {
-    path: "/setting",
+    path: "/question",
     usePrivilege: PrivilegeName.VIEW_SETTING,
   },
 ];
