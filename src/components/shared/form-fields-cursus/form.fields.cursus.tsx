@@ -114,13 +114,13 @@ const FormFieldsEditableCursus: React.FC<FormFieldsEditableProps<any>> = ({
                   >
                     Enregistrer
                   </button>
-                  <button
+                  {/* <button
                     type="button"
                     onClick={handleChangeEditableFields}
                     className={style.editBtn}
                   >
                     Annuler
-                  </button>
+                  </button> */}
                 </>
               )}
               {}

@@ -30,9 +30,9 @@ const Tabs: React.FC<TabsProps<any>> = ({ tabsConstant, onChangePage }) => {
   return (
     <div className={style.container}>
       <div className={style.tabsHeader}>
-        <button className={style.btnBack} type="button" onClick={onClick}>
+        {/* <button className={style.btnBack} type="button" onClick={onClick}>
           <IconArrowLeft />
-        </button>
+        </button> */}
         <div className={style.navTabs}>
           {tabsConstant.map((tab, index) => (
             <div

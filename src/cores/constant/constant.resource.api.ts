@@ -90,4 +90,7 @@ export const api = {
   registrationPeriod: {
     index: `${process.env.API_BASE_URL}/registration-period`,
   },
+  question: {
+    index: `${process.env.API_BASE_URL}/question`,
+  },
 };

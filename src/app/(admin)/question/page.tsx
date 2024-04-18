@@ -9,7 +9,7 @@ import Loader from "@/components/loader/loader";
 import ErrorModal, { ErrorMessage } from "@/components/modal/errorModal";
 import Processing from "@/components/shared/processing/processing.component";
 import { HistoryType } from "@/components/shared/history/history.constant";
-import { getDate, getTime } from "@/utils/date.utils";
+import { getTime } from "@/utils/date.utils";
 import {
   ActionType,
   EntityName,
@@ -30,23 +30,19 @@ import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import extractTokenInfo from "@/utils/extract.token";
 import { getAllCursus } from "@/services/cursus/cursus.service";
 import { CursusType } from "@/services/cursus/cursus.models";
-import CursusFormFields from "@/components/form/cursus.form.fields";
-import AddEventFormFields from "@/components/form/add.event.form.fields";
-import { MessageModalType } from "@/components/modal/modal.interface";
-import EventList from "@/components/shared/eventList/eventList.component";
-import { SchoolEvent } from "@/services/events/event.interface";
-import { GetAllEvent } from "@/services/events/event.service";
+import CursusFormFields from "@/components/form/question.form.fields";
 import { HttpStatusCode } from "axios";
-import IconEvent from "@/components/shared/icons/iconEvent";
 import History, {
   HistoryUser,
 } from "@/components/shared/history/history.component";
 import IconCursus from "@/components/shared/icons/iconCursus";
-import IconRegistration from "@/components/shared/icons/iconRegistration";
-import RegistrationPeriodFormFields from "@/components/form/registration-period.form.fields";
-import { RegistrationPeriod } from "@/services/registration-period/registration-period.model";
-import { GetAllRegistrationPeriod } from "@/services/registration-period/registration-period.services";
 import FormFieldsEditableCursus from "@/components/shared/form-fields-cursus/form.fields.cursus";
+import {
+  ChoiceOptions,
+  QuestionType,
+  QuestionTypeToInsert,
+} from "@/services/question/question.models";
+import { addQuestionService } from "@/services/question/question.service";
 
 const token = getLocalStorageItem("loginAccessToken") || "";
 
@@ -59,7 +55,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
 
   const [cursusData, setCursusData] = useState<CursusType[] | any>();
 
-  const [fieldsIsDisabled, setFieldsIsEditable] = useState<boolean>(true);
+  const [fieldsIsDisabled, setFieldsIsEditable] = useState<boolean>(false);
 
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
@@ -70,20 +66,9 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
   const [registrationPeriodIsModified, setRegistrationPeriodIsModified] =
     useState<boolean>(false);
 
-  const [activeTab, setActiveTab] = useState<number>(0);
-
   const [message, setMessage] = useState<ErrorMessage>();
 
   const [cursusHistoryData, setCursusHistoryData] = useState<HistoryType[]>([]);
-
-  const [registrationPeriodHistoryData, setRegistrationPeriodHistoryData] =
-    useState<HistoryType[]>([]);
-
-  const [eventListData, setEventListData] = useState<SchoolEvent[]>([]);
-
-  const [registrationPeriodData, setRegistrationPeriodData] = useState<
-    RegistrationPeriod[]
-  >([]);
 
   const closeModal = (value: boolean) => {
     setIsOpen(value);
@@ -101,21 +86,6 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
     }
   };
 
-  const getRegistrationPeriodData = async () => {
-    const response = await GetAllRegistrationPeriod();
-    if (response.status == HttpStatusCode.Ok) {
-      setRegistrationPeriodData(response.data.data);
-    }
-  };
-
-  const getEvent = async () => {
-    const response = await GetAllEvent();
-
-    if (response.status === HttpStatusCode.Ok) {
-      setEventListData(response.data.data);
-    }
-  };
-
   const getCursusHistoryData = async () => {
     const response = await getHistoryByEntity(EntityName.CURSUS);
     if (response.status === HttpStatusCode.Ok) {
@@ -123,44 +93,46 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
     }
   };
 
-  const getRegistrationPeriodHistoryData = async () => {
-    const response = await getHistoryByEntity(EntityName.REGISTRATION_PERIOD);
-    if (response.status === HttpStatusCode.Ok) {
-      setRegistrationPeriodHistoryData(response.data.data);
-    }
-  };
-
-  const getOnChangeTab = (tabIndex: number) => {
-    setActiveTab(tabIndex);
-  };
-
   const handleChangeEditableFields = () => {
     setFieldsIsEditable(!fieldsIsDisabled);
   };
 
-  const AddCursusSubmitService = async (data: CursusMutipleToInsert) => {
-    const newCursus: CursusAndHistory[] = getNewCursus(data);
-    const modifiedCursus: CursusAndHistory[] = checkOldCursusIsModified(data);
-    const result: CursusAndHistory[] = [...modifiedCursus, ...newCursus];
+  const AddCursusSubmitService = async (data: any) => {
+    console.log(" ================= add Question");
+    console.log(data);
+    console.log(" ================= add Question");
+    const question: QuestionTypeToInsert = {
+      ...data,
+      choice: getAllChoice(data.choice),
+    };
 
-    if (result.length > 0) {
-      const response = await addMultipleCursusService(result);
-      if (response.status === HttpStatusCode.Ok) {
-        setCursusIsModified(true);
-        setIsOpen(true);
-        setMessage({
-          title: "Modification effectué",
-          message: "Les mises à jour ont été effectuées avec succès.",
-        });
-      } else {
-        setCursusIsModified(false);
-        setIsOpen(true);
-        setMessage({
-          title: "Erreur",
-          message: "Une erreur c'est produit lors de la modification.",
-        });
-      }
-    }
+    const response = await addQuestionService(question);
+
+    // if (result.length > 0) {
+    //   const response = await addMultipleCursusService(result);
+    //   if (response.status === HttpStatusCode.Ok) {
+    //     setCursusIsModified(true);
+    //     setIsOpen(true);
+    //     setMessage({
+    //       title: "Modification effectué",
+    //       message: "Les mises à jour ont été effectuées avec succès.",
+    //     });
+    //   } else {
+    //     setCursusIsModified(false);
+    //     setIsOpen(true);
+    //     setMessage({
+    //       title: "Erreur",
+    //       message: "Une erreur c'est produit lors de la modification.",
+    //     });
+    //   }
+    // }
+  };
+  const getAllChoice = (choiceOptions: ChoiceOptions[]) => {
+    let tab: string[] = [];
+    choiceOptions.map((choiceOptions) => {
+      tab.push(choiceOptions.choiceOptions);
+    });
+    return tab;
   };
 
   const getNewCursus = (
@@ -200,32 +172,20 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
     return modifiedCursus;
   };
 
-  const onAddEventChange = (response: MessageModalType) => {
-    setIsSuccess(response.success as boolean);
-    setMessage({
-      title: response?.title as string,
-      message: response.message as string,
-    });
-    setIsOpen(true);
-  };
-
   const tabsConstant = [
     {
-      label: "Question",
+      label: "CREATION QUESTION",
       content: (
         <>
           <FormFieldsEditableCursus
             handleChangeEditableFields={handleChangeEditableFields}
-            fieldsIsDisabled={fieldsIsDisabled}
+            fieldsIsDisabled={false}
             formData={formFieldsData}
             submitService={AddCursusSubmitService}
             haveActionButton={true}
             haveImageProfile={false}
           >
-            <CursusFormFields
-              fieldsIsDisabled={fieldsIsDisabled}
-              cursusData={cursusData}
-            />
+            <CursusFormFields fieldsIsDisabled={fieldsIsDisabled} />
           </FormFieldsEditableCursus>
         </>
       ),
@@ -398,198 +358,10 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
     },
   ];
 
-  const RegistrationPeriodHistoryColumn = [
-    {
-      name: "Utilisateur",
-      selector: (row: HistoryType) => row?.user?._id,
-      sortable: true,
-      width: screenSize.width < 600 ? "100%" : "160px",
-      style: { ...columnStyles, ...responsiveColumnStyles },
-
-      cell: (row: HistoryType) => {
-        let date: string | undefined = undefined;
-        const actionName = translateActionName(row?.action?.name);
-        const entityName = translateEntityName(row?.action?.name);
-
-        if (row?.createdAt) {
-          date = new Date(row.createdAt).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          });
-        }
-        const time = getTime(row?.createdAt);
-
-        return screenSize.width < 600 ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "start",
-              gap: "10px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "130px",
-              }}
-            >
-              <HistoryUser
-                photo={row?.user?.photo}
-                name={row?.user?.firstname}
-              />
-              <div
-                style={{
-                  color: "5C5C5C",
-                  fontFamily: "Roboto",
-                  paddingLeft: "28px",
-                  width: "130px",
-                }}
-              >
-                {date}, {time}
-              </div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>
-                {`a ${actionName} ${entityName}`}
-                {row?.action?.proof && (
-                  <>
-                    :{" "}
-                    <span
-                      style={{
-                        color: "#5C5C5C",
-                        fontFamily: "Roboto",
-                        fontSize: "12px",
-                        fontStyle: "normal",
-                        fontWeight: 700,
-                        lineHeight: "normal",
-                      }}
-                    >
-                      "{row?.action?.proof}"
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <HistoryUser photo={row?.user?.photo} name={row?.user?.firstname} />
-        );
-      },
-    },
-    {
-      name: "Action",
-      selector: (row: HistoryType) => row?.action.name,
-      sortable: true,
-      hide: Media.SM || Media.MD,
-      style: { ...columnStyles, ...responsiveColumnStyles },
-      cell: (row: HistoryType) => {
-        const actionName = translateActionName(row?.action?.name);
-        const entityName = translateEntityName(row?.action?.name);
-
-        return (
-          <div>
-            {`a ${actionName} ${entityName}`}
-            {row?.action?.proof && (
-              <>
-                :{" "}
-                <span
-                  style={{
-                    color: "#5C5C5C",
-                    fontFamily: "Roboto",
-                    fontSize: "12px",
-                    fontStyle: "normal",
-                    fontWeight: 700,
-                    lineHeight: "normal",
-                  }}
-                >
-                  "{row?.action?.proof}"
-                </span>
-              </>
-            )}
-          </div>
-        );
-      },
-    },
-    {
-      name: "Date",
-      selector: (row: HistoryType) => row?.createdAt,
-      sortable: true,
-      width: "140px",
-      style: { ...columnStyles, ...responsiveColumnStyles },
-      hide: Media.SM || Media.MD,
-      cell: (row: HistoryType) => {
-        let date: string | undefined = undefined;
-
-        if (row?.createdAt) {
-          date = new Date(row.createdAt).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          });
-        }
-        const time = getTime(row?.createdAt);
-        return (
-          <div style={{ color: "5C5C5C", fontFamily: "Roboto" }}>
-            {date}, {time}
-          </div>
-        );
-      },
-    },
-  ];
-
-  const EventListColumn = [
-    {
-      name: "Nom",
-      selector: (row: SchoolEvent) => row?.name,
-      sortable: true,
-      left: true,
-    },
-    {
-      name: "Date de début",
-      selector: (row: SchoolEvent) => row?.startDate,
-      sortable: true,
-      hide: Media.MD || Media.SM,
-      cell: (row: any) => {
-        const date = getDate(row?.startDate);
-        const time = getTime(row?.startDate);
-        return (
-          <div>
-            {date} <span style={{ color: "#B4B4B4" }}> {time} </span>
-          </div>
-        );
-      },
-    },
-    {
-      name: "Date de fin",
-      selector: (row: SchoolEvent) => row?.endDate,
-      sortable: true,
-      left: true,
-      hide: Media.MD || Media.SM,
-      cell: (row: any) => {
-        const date = getDate(row?.endDate);
-        const time = getTime(row?.endDate);
-        return (
-          <div>
-            {date} <span style={{ color: "#B4B4B4" }}> {time} </span>
-          </div>
-        );
-      },
-    },
-  ];
-
   useEffect(() => {
     getCursus();
     getCursusHistoryData();
-    getRegistrationPeriodData();
-    getRegistrationPeriodHistoryData();
   }, [cursusIsModified, registrationPeriodIsModified]);
-
-  useEffect(() => {
-    getEvent();
-  }, [isOpen]);
 
   return (
     <DetailsSection>
@@ -605,34 +377,16 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
       ) : (
         <>
           <Details>
-            <Tabs tabsConstant={tabsConstant} onChangePage={getOnChangeTab} />
+            <Tabs tabsConstant={tabsConstant} />
           </Details>
 
-          {activeTab == 0 ? (
-            <Processing title="Quiz" titleIcon={<IconCursus />}>
-              <History
-                columns={CursusHistoryColumn}
-                data={cursusHistoryData}
-                minHeight="73vh"
-              />
-            </Processing>
-          ) : activeTab == 1 ? (
-            <>
-              <Processing title="Inscriptions" titleIcon={<IconRegistration />}>
-                <History
-                  columns={RegistrationPeriodHistoryColumn}
-                  data={registrationPeriodHistoryData}
-                  minHeight="73vh"
-                />
-              </Processing>
-            </>
-          ) : (
-            <Processing title="Évènements" titleIcon={<IconEvent />}>
-              <>
-                <EventList columns={EventListColumn} data={eventListData} />
-              </>
-            </Processing>
-          )}
+          <Processing title="Quiz" titleIcon={<IconCursus />}>
+            <History
+              columns={CursusHistoryColumn}
+              data={cursusHistoryData}
+              minHeight="73vh"
+            />
+          </Processing>
         </>
       )}
     </DetailsSection>

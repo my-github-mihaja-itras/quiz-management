@@ -35,6 +35,7 @@
 .form .colDiv1 {
   display: grid;
   grid-template-columns: 1fr;
+  /* background-color: blue; */
 }
 
 .form .colDiv2 {
@@ -44,13 +45,18 @@
 
 .form .colDiv {
   display: grid;
-  grid-template-columns: 0.99fr 0.9fr 0.045fr;
+  grid-template-columns: 1fr 0.2fr 0.045fr;
 }
 
 .form .colDivWithoutIcon {
   display: grid;
   grid-template-columns: 0.9fr 0.9fr ;
   margin-right: 5px;
+}
+.containerRadio{
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
 }
 
 .gap1 {
@@ -75,6 +81,12 @@
   line-height: 30px;
   color: #5c5c5c;
 }
+
+.centerField{
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
+} 
 .btnIcon {
   display: flex;
   justify-content: center;
