@@ -83,6 +83,11 @@ export enum PrivilegeName {
     EDIT_EVENT = 'EDIT_EVENT', // Modification EVENT
     DELETE_EVENT = 'DELETE_EVENT', // Suppression EVENT
 
+    VIEW_QUIZ_SESSION = 'VIEW_QUIZ_SESSION', // Consultation liste QUIZ_SESSION
+    CREATE_QUIZ_SESSION = 'CREATE_QUIZ_SESSION', // Création QUIZ_SESSION
+    EDIT_QUIZ_SESSION = 'EDIT_QUIZ_SESSION', // Modification QUIZ_SESSION
+    DELETE_QUIZ_SESSION = 'DELETE_QUIZ_SESSION', // Suppression QUIZ_SESSION
+    
     VIEW_SETTING ='VIEW_SETTING' // Can view setting
 
   }

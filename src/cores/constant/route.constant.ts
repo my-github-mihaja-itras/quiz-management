@@ -49,4 +49,8 @@ export const ROUTES = [
     path: "/question",
     usePrivilege: PrivilegeName.VIEW_SETTING,
   },
+  {
+    path: "/quiz",
+    usePrivilege: PrivilegeName.VIEW_QUIZ_SESSION,
+  },
 ];
