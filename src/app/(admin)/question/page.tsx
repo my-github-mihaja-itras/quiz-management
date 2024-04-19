@@ -107,7 +107,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
       setIsOpen(true);
       setMessage({
         title: "Erreur",
-        message: "Veuillez bien verifier vos informations !",
+        message: "Veuillez sélectionner une réponse !",
       });
     }
   };
@@ -121,7 +121,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
 
   const tabsConstant = [
     {
-      label: "CREATION QUESTION",
+      label: "Création Question",
       content: (
         <>
           <FormFieldsEditableCursus
