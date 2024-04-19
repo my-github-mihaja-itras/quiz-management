@@ -25,6 +25,9 @@ import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import Dropdown from "@/components/shared/dropdown/dropDown.component";
 import IconEdit from "@/components/shared/icons/iconEdit";
 import { useRouter } from "next/navigation";
+import { getQuizSessionPaginated } from "@/services/quiz-session/quiz-session.service";
+import { QuizSession } from "@/services/quiz-session/quiz-session.models";
+import { getDate, getTime } from "@/utils/date.utils";
 
 const RoleList = () => {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -57,76 +60,61 @@ const RoleList = () => {
   const [searchKeywords, setSearchKeywords] = useState<string>("");
 
   // State pour les données a insérer dans la table
-  const [roleData, setRoleData] = useState<Role[]>([]);
+  const [roleData, setRoleData] = useState<QuizSession[]>([]);
 
   const router = useRouter();
 
   const roleColumns = [
     {
       name: "Numéro",
-      selector: (row: Role) => row?.name,
+      selector: (row: QuizSession) => row?._id,
       sortable: true,
     },
 
     {
       name: "Utilisateur",
-      selector: (row: Role) => row?.alias,
+      selector: (row: QuizSession) => row?._id,
       sortable: true,
-
-      cell: (row: Role) => {
+      cell: (row: QuizSession) => {
         return (
-          <>
-            <RoleCell bg={addOpacityToColor(row?.color, 0.2)} color={row.color}>
-              <span>{row.name}</span>
-              {row.alias}
-            </RoleCell>
-          </>
+          <div className={style.tabCell}>
+            {row?.user.firstname} {row?.user.lastname}{" "}
+          </div>
         );
       },
     },
+
     {
       name: "Date Utilisation",
-      selector: (row: Role) => row?.groups,
+      selector: (row: QuizSession) => row?._id,
       sortable: true,
-      minWidth: "200px",
-      hide: Media.SM,
-      cell: (row: Role) => {
-        const groupAlias = row?.groups.map(
-          (group: { alias: string }) => group.alias
-        );
-        const groupNames = row.groups.map(
-          (group: { name: string }) => group.name
-        );
+      cell: (row: QuizSession) => {
+        const date = getDate(row?.createdAt);
+        const time = getTime(row?.createdAt);
         return (
-          <>
-            {groupAlias.map((groupAlias, index) => (
-              <GroupCell key={index} color={row.color}>
-                <span>{groupNames[index]}</span>
-                {groupAlias}
-              </GroupCell>
-            ))}
-          </>
+          <div>
+            {date} <span style={{ color: "#B4B4B4" }}> {time} </span>
+          </div>
         );
       },
     },
     {
       name: "Nbre Question",
-      selector: (row: Role) => getCountUser(row?._id),
+      selector: (row: QuizSession) => row?._id,
       sortable: true,
-      cell: (row: Role) => {
-        return <div className={style.tabCell}>{getCountUser(row?._id)}</div>;
+      cell: (row: QuizSession) => {
+        return <div className={style.tabCell}>{row?.quiz.length}</div>;
       },
     },
-
     {
       name: "",
       button: true,
       allowOverflow: true,
       width: "5%",
       center: true,
-      cell: (row: Role) => {
+      cell: (row: QuizSession) => {
         function handleEdit(_id: string): void {
-          router.push("/roles/" + _id);
+          router.push("/quiz/" + _id);
         }
         const [openDropdownId, setOpenDropdownId] = useState(null);
         const handleToggleDropdown = (id: any) => {
@@ -150,44 +138,27 @@ const RoleList = () => {
     },
   ];
   const fetchData = async () => {
-    const res = await getRolePaginated(
+    const res = await getQuizSessionPaginated(
       currentPageNumber,
       rowPerPage,
       searchKeywords
     );
+
     const totalItems = res.data.totalItems;
     const totalPage = res.data.pageNumber;
     setTotalRows(totalItems);
     setTotalPage(totalPage);
 
-    const roleData: Role[] = res.data.items;
+    const roleData: QuizSession[] = res.data.items;
     setRoleData(roleData);
 
     setisLoading(false);
-  };
-
-  const loadGroupAndRoles = async () => {
-    const groupsResponse = await getAllGroups();
-    const countUserResponse = await getCountUserByRole();
-    const groups = groupsResponse.data;
-    const countUser = countUserResponse.data.data;
-    setGroups(groups);
-    setCounUserByRole(countUser);
-    setisLoading(false);
-  };
-  
-
-  const getCountUser = (id: any) => {
-    const result = countUserByRole?.filter((item) => item.id === id);
-    const response = result?.length === 1 ? result[0].count : 0;
-    return response;
   };
 
   // Extract keywords for search
   const handleSearchKeywordsChange = (keywords: any) => {
     setSearchKeywords(keywords);
   };
-
 
   const closeModalDelete = (value: boolean) => {
     setIsOpenModalDelete(value);
@@ -256,7 +227,6 @@ const RoleList = () => {
   }, [groups]);
 
   useEffect(() => {
-    loadGroupAndRoles();
     fetchData();
   }, [currentPageNumber, rowPerPage, searchKeywords]);
 

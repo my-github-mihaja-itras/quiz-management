@@ -1,51 +1,19 @@
 import { api } from "@/cores/constant/constant.resource.api";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import axios from "axios";
-import { QuestionTypeToInsert } from "./quiz-session.models";
 
-const token = getLocalStorageItem("loginAccessToken");
-
-// export async function getAllQuestion(): Promise<any> {
-//   try {
-//     const response = await axios.get(`${api.question.index}`, {
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-
-//     return response.data;
-//   } catch (error: any) {
-//     return error.response;
-//   }
-// }
-
-export async function addQuestionService(
-  question: QuestionTypeToInsert
+export async function getQuizSessionPaginated(
+  page: number,
+  pageSize: number,
+  searchKeywords: string
 ): Promise<any> {
   try {
-    const response = await axios.post(
-      `${api.question.index}`,
-      JSON.stringify(question),
-      {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return response;
-  } catch (error: any) {
-    return error.response;
-  }
-}
-
-export async function getHistoryByEntity(entityName: string): Promise<any> {
-  try {
+    const token = getLocalStorageItem("loginAccessToken");
+    const search = `&search=${searchKeywords}`;
     const response = await axios.get(
-      `${api.history.index}/entity/${entityName}`,
+      `${
+        api.quizSession.list
+      }?page=${page.toString()}&pageSize=${pageSize.toString()}${search}`,
       {
         headers: {
           Accept: "application/json",
@@ -55,7 +23,7 @@ export async function getHistoryByEntity(entityName: string): Promise<any> {
       }
     );
 
-    return response;
+    return response.data;
   } catch (error: any) {
     return error.response;
   }

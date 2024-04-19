@@ -10,9 +10,7 @@ import FormFieldsEditable from "@/components/shared/form-fields/form.fields.comp
 import Tabs from "@/components/shared/tabs/tabs.components";
 import { ActionType } from "@/cores/constant/constant.history";
 import UseWindowSize from "@/cores/window/window.size";
-import {
-  CoursSelection,
-} from "@/services/educational-classes/educational-classes.models";
+import { CoursSelection } from "@/services/educational-classes/educational-classes.models";
 import { Student } from "@/services/student/student.models";
 import { GetStudentById } from "@/services/student/student.service";
 import { EditTeacherById } from "@/services/teacher/teacher.service";
@@ -195,14 +193,16 @@ const StudentDetail = ({ params }: { params: { studentId: string } }) => {
               }
             }
           );
-        const courseName = row?.courses.map((course) => {
-          if (
-            studentCourseIds?.includes(course._id) === true ||
-            obligatoryCourse?.includes(course._id) === true
-          ) {
-            return course.name;
-          }
-        }).filter((course)=>course!==undefined);
+        const courseName = row?.courses
+          .map((course) => {
+            if (
+              studentCourseIds?.includes(course._id) === true ||
+              obligatoryCourse?.includes(course._id) === true
+            ) {
+              return course.name;
+            }
+          })
+          .filter((course) => course !== undefined);
         return (
           <div
             style={
@@ -219,70 +219,72 @@ const StudentDetail = ({ params }: { params: { studentId: string } }) => {
     },
   ];
 
-
   return (
-    <DetailsSection>
-      {isOpen && (
-        <ErrorModal
-          close={closeModal}
-          message={message}
-          color={"#0FC3ED"}
-        ></ErrorModal>
-      )}
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Details>
-          {!dataNotFound ? (
-            <Tabs
-              tabsConstant={[
-                {
-                  label: "Infos persos",
-                  content: (
-                    <>
-                      {formFieldsData && (
-                        <FormFieldsEditable
-                          handleChangeEditableFields={
-                            handleChangeEditableFields
-                          }
-                          fieldsIsDisabled={fieldsIsDisabled}
-                          formData={formFieldsData}
-                          submitService={PersonalSubmitService}
-                          haveActionButton={true}
-                          haveImageProfile={true}
-                        >
-                          {studentData ? (
-                            <StudentFormFields
-                              fieldsIsDisabled={fieldsIsDisabled}
-                              data={studentData}
-                            />
-                          ) : (
-                            <Loader />
-                          )}
-                        </FormFieldsEditable>
-                      )}
-                    </>
-                  ),
-                },
-              ]}
-            />
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
-              }}
-            >
-              Le compte d'utilisateur n'est pas trouvé
-            </div>
-          )}
-        </Details>
-      )}
+    // <DetailsSection>
+    //   {isOpen && (
+    //     <ErrorModal
+    //       close={closeModal}
+    //       message={message}
+    //       color={"#0FC3ED"}
+    //     ></ErrorModal>
+    //   )}
+    //   {isLoading ? (
+    //     <Loader />
+    //   ) : (
+    //     <Details>
+    //       {!dataNotFound ? (
+    //         <Tabs
+    //           tabsConstant={[
+    //             {
+    //               label: "Infos persos",
+    //               content: (
+    //                 <>
+    //                   {formFieldsData && (
+    //                     <FormFieldsEditable
+    //                       handleChangeEditableFields={
+    //                         handleChangeEditableFields
+    //                       }
+    //                       fieldsIsDisabled={fieldsIsDisabled}
+    //                       formData={formFieldsData}
+    //                       submitService={PersonalSubmitService}
+    //                       haveActionButton={true}
+    //                       haveImageProfile={true}
+    //                     >
+    //                       {studentData ? (
+    //                         <StudentFormFields
+    //                           fieldsIsDisabled={fieldsIsDisabled}
+    //                           data={studentData}
+    //                         />
+    //                       ) : (
+    //                         <Loader />
+    //                       )}
+    //                     </FormFieldsEditable>
+    //                   )}
+    //                 </>
+    //               ),
+    //             },
+    //           ]}
+    //         />
+    //       ) : (
+    //         <div
+    //           style={{
+    //             display: "flex",
+    //             justifyContent: "center",
+    //             alignContent: "center",
+    //             alignItems: "center",
+    //           }}
+    //         >
+    //           Le compte d'utilisateur n'est pas trouvé
+    //         </div>
+    //       )}
+    //     </Details>
+    //   )}
 
-      <CourseTab columns={courseColumn} data={courseData} />
-    </DetailsSection>
+    //   <CourseTab columns={courseColumn} data={courseData} />
+    // </DetailsSection>
+    <div>
+      <h1>Details quiz session</h1>
+    </div>
   );
 };
 
