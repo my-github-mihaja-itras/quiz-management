@@ -144,35 +144,42 @@ export const InputTextArea = ({
   };
 
   return (
-    <div
-      className={`
+    <>
+      <div
+        className={`
       ${style.textAreaContainer}
-      ${style.inputContainer}
+ 
       ${style.formGroup}
       ${isFocused || onChange ? style.formInputFocused : ""}
       
       `}
-    >
-      <label
-        className={`${style.placeholder} ${
-          isFocused ? style.labelWhenFocused : style.labelWhenNotFocused
-        } `}
       >
-        {label}
-      </label>
-      <textarea
-        {...register(fieldName as any, {
-          value: value,
-          ...validationRules,
-        })}
-        value={defaultValue}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        disabled={readOnly}
-        // rows={5}
-        style={{ color: readOnly ? "#909090" : "#5c5c5c" }}
-      />
-    </div>
+        <label
+          className={`${style.placeholder} ${
+            isFocused ? style.labelWhenFocused : style.labelWhenNotFocused
+          } `}
+        >
+          {label}
+        </label>
+        <textarea
+          {...register(fieldName as any, {
+            value: value,
+            ...validationRules,
+          })}
+          value={defaultValue}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          disabled={readOnly}
+          // rows={5}
+          // className={`${onError ? style.formInputError : style.formInput} ${
+          //   onChange && style.formInputNotEmpty
+          // }`}
+          className={`${onError && style.textareaOnError} `}
+          style={{ color: readOnly ? "#909090" : "#5c5c5c" }}
+        />
+      </div>
+      {onError && <span className={style.errorMessage}>Champ requis</span>}
+    </>
   );
 };
 

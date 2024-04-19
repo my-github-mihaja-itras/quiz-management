@@ -58,6 +58,16 @@
   display: flex;
   justify-content: center;
 }
+/* .containerRadio input[type="radio"] {
+  appearance: none;  
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;  
+  height: 20px;  
+  border: 2px solid blue;  
+  border-radius: 50%;  
+  outline: none; 
+} */
 
 .gap1 {
   gap: 16px;

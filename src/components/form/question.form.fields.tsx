@@ -89,7 +89,7 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
               </div>
             )}
             <div className={`${style.colDiv1} ${style.my5} `}>
-              <InputText
+              <InputTextArea
                 label={`${screenSize.width < 736 ? "Nom" : ""}`}
                 onChange={`questionAsked`}
                 fieldName={`questionAsked`}
@@ -128,9 +128,7 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
                       register={register}
                       readOnly={fieldsIsDisabled}
                       required={"Champ requis"}
-                      onError={
-                        errors.choice && errors.choice[index]
-                      }
+                      onError={errors.choice && errors.choice[index]}
                     />
                   </div>
                   <div className={style.containerRadio}>
@@ -139,6 +137,7 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
                       value={index}
                       checked={selectedOption === index.toString()}
                       onChange={handleOptionChange}
+                      className={style.radioOnError}
                     />
                   </div>
                   <>

@@ -49,11 +49,9 @@ const token = getLocalStorageItem("loginAccessToken") || "";
 const tokenInfo: any = extractTokenInfo(token);
 
 const SettingPage = ({ params }: { params: { candidateId: string } }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [formFieldsData, setFormFieldsData] = useState<any>();
-
-  const [cursusData, setCursusData] = useState<CursusType[] | any>();
 
   const [fieldsIsDisabled, setFieldsIsEditable] = useState<boolean>(false);
 
@@ -61,7 +59,6 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-  const [cursusIsModified, setCursusIsModified] = useState<boolean>(false);
 
   const [registrationPeriodIsModified, setRegistrationPeriodIsModified] =
     useState<boolean>(false);
@@ -72,25 +69,8 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
 
   const closeModal = (value: boolean) => {
     setIsOpen(value);
-    setCursusIsModified(false);
     setRegistrationPeriodIsModified(!registrationPeriodIsModified);
     setIsSuccess(false);
-  };
-
-  const getCursus = async () => {
-    const cursusRes = await getAllCursus();
-
-    if (cursusRes) {
-      setIsLoading(false);
-      setCursusData(cursusRes.data);
-    }
-  };
-
-  const getCursusHistoryData = async () => {
-    const response = await getHistoryByEntity(EntityName.CURSUS);
-    if (response.status === HttpStatusCode.Ok) {
-      setCursusHistoryData(response.data.data);
-    }
   };
 
   const handleChangeEditableFields = () => {
@@ -105,27 +85,31 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
       ...data,
       choice: getAllChoice(data.choice),
     };
-
-    const response = await addQuestionService(question);
-
-    // if (result.length > 0) {
-    //   const response = await addMultipleCursusService(result);
-    //   if (response.status === HttpStatusCode.Ok) {
-    //     setCursusIsModified(true);
-    //     setIsOpen(true);
-    //     setMessage({
-    //       title: "Modification effectué",
-    //       message: "Les mises à jour ont été effectuées avec succès.",
-    //     });
-    //   } else {
-    //     setCursusIsModified(false);
-    //     setIsOpen(true);
-    //     setMessage({
-    //       title: "Erreur",
-    //       message: "Une erreur c'est produit lors de la modification.",
-    //     });
-    //   }
-    // }
+    if (data.trueAnswer != null) {
+      const response = await addQuestionService(question);
+      if (response.status === HttpStatusCode.Created) {
+        setIsSuccess(true);
+        setIsOpen(true);
+        setMessage({
+          title: "Ajout effectué",
+          message: "Votre question a bien été enregistrée !",
+        });
+      } else {
+        setIsSuccess(false);
+        setIsOpen(true);
+        setMessage({
+          title: "Erreur",
+          message: "Veuillez bien verifier vos informations !",
+        });
+      }
+    } else {
+      setIsSuccess(false);
+      setIsOpen(true);
+      setMessage({
+        title: "Erreur",
+        message: "Veuillez bien verifier vos informations !",
+      });
+    }
   };
   const getAllChoice = (choiceOptions: ChoiceOptions[]) => {
     let tab: string[] = [];
@@ -133,43 +117,6 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
       tab.push(choiceOptions.choiceOptions);
     });
     return tab;
-  };
-
-  const getNewCursus = (
-    cursusMultiple: CursusMutipleToInsert
-  ): CursusAndHistory[] => {
-    return cursusMultiple.cursusToInsert.filter(
-      (cursusAndHistory) => cursusAndHistory.history
-    );
-  };
-
-  const checkOldCursusIsModified = (
-    cursusMultiple: CursusMutipleToInsert
-  ): CursusAndHistory[] => {
-    const modifiedCursus: CursusAndHistory[] = [];
-    cursusMultiple.cursusToInsert.map((newCursus) => {
-      cursusData.map((oldCursus: CursusType) => {
-        if (oldCursus._id === newCursus.cursus._id) {
-          if (
-            oldCursus.name != newCursus.cursus.name ||
-            oldCursus.description != newCursus.cursus.description
-          ) {
-            newCursus.history = {
-              action: {
-                name: ActionType.UPDATE_CURSUS,
-                proof: newCursus.cursus.name,
-              },
-              user: tokenInfo._id,
-              targetId: newCursus.cursus._id ? newCursus.cursus._id : "",
-              entity: EntityName.CURSUS,
-            };
-
-            modifiedCursus.push(newCursus);
-          }
-        }
-      });
-    });
-    return modifiedCursus;
   };
 
   const tabsConstant = [
@@ -358,10 +305,6 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
     },
   ];
 
-  useEffect(() => {
-    getCursus();
-    getCursusHistoryData();
-  }, [cursusIsModified, registrationPeriodIsModified]);
 
   return (
     <DetailsSection>
@@ -369,7 +312,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
         <ErrorModal
           close={closeModal}
           message={message}
-          color={isSuccess || cursusIsModified ? "#0fc3ed" : "#dc3545"}
+          color={isSuccess ? "#0fc3ed" : "#dc3545"}
         ></ErrorModal>
       )}
       {isLoading ? (
