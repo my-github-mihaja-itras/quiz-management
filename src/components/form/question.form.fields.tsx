@@ -163,7 +163,7 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
                   type="button"
                   onClick={() => handleAddQuestionTabField()}
                 >
-                  <IconAdd /> Ajouter une filière
+                  <IconAdd /> Ajouter un choix
                 </button>
               </div>
             )}
