@@ -1,7 +1,7 @@
 version: "3"
 services:
-  campus-management:
-    container_name: campus-management
+  quiz-management:
+    container_name: quiz-management
     build: ./
     ports:
       - "21623:3002"

@@ -10,7 +10,7 @@ const nextConfig = {
     JWT_EXPIRATION: process.env.JWT_EXPIRATION,
   },
   images: {
-    domains: [process.env.API_BASE_URL],
+    domains: [process.env.API_BASE_URL || "/api"],
   },
 };
 
