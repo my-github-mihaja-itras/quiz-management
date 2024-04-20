@@ -28,3 +28,23 @@ export async function getQuizSessionPaginated(
     return error.response;
   }
 }
+
+export async function getQuizSessionById(quizSessionId: string): Promise<any> {
+  try {
+    const token = getLocalStorageItem("loginAccessToken");
+    const response = await axios.get(
+      `${api.quizSession.index}/${quizSessionId}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+}
