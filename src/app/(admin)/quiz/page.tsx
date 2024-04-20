@@ -251,7 +251,7 @@ const RoleList = () => {
           handleRowPerPageNumberChange={handleChangeRowPerPage}
           currentPageNumber={currentPageNumber}
           totalRowPerPage={rowPerPage}
-          hasAddButton={true}
+          hasAddButton={false}
           hasFilter={false}
           hasChoiceFilter={false}
           hasDateFilter={false}

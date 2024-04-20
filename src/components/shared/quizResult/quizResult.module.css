@@ -1,0 +1,45 @@
+.layout {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 0px 20px 20px 20px;
+}
+.question {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  background-color: #eeeeee;
+  min-height: 40px;
+  margin-top: 20px;
+}
+
+.containerChoice {
+  margin-top: 10px;
+  border: 1px solid #eeeeee;
+  display: grid;
+  grid-template-columns: 1fr 0.1fr 0.1fr;
+  align-items: center;
+  padding: 5px 20px 5px 20px;
+  min-height: 40px;
+}
+.containerInputRadio{
+    display: flex;
+    justify-content: end;
+    /* background-color: blue; */
+}
+.containerIcon {
+  min-width: 20px;
+  min-height: 20px;
+  display: flex;
+  justify-content: end;
+  /* background-color: blueviolet; */
+}
+.containerChoice text {
+}
+
+.trueAnswer {
+  background-color: #c7fac6;
+}
+.falseAnswer {
+  background-color: #faeded;
+}

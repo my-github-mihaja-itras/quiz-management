@@ -1,3 +1,4 @@
+import { QuestionType } from "../question/question.models";
 import { User } from "../user/user.models";
 
 export interface QuizSession {
@@ -9,6 +10,6 @@ export interface QuizSession {
 
 export interface QuestionResult {
   _id?: string;
-  question: string;
+  question:  QuestionType;
   userAnswer: number;
 }

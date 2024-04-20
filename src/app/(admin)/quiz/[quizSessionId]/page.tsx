@@ -3,48 +3,53 @@
 import StudentFormFields from "@/components/form/student.form.fields";
 import Loader from "@/components/loader/loader";
 import ErrorModal, { ErrorMessage } from "@/components/modal/errorModal";
-import CourseTab from "@/components/shared/courseTab/courseTab.component";
 import DetailsSection from "@/components/shared/details-section/details.section.components";
 import Details from "@/components/shared/details/details.components";
 import FormFieldsEditable from "@/components/shared/form-fields/form.fields.components";
 import Tabs from "@/components/shared/tabs/tabs.components";
 import { ActionType } from "@/cores/constant/constant.history";
 import UseWindowSize from "@/cores/window/window.size";
-import { CoursSelection } from "@/services/educational-classes/educational-classes.models";
 import { Student } from "@/services/student/student.models";
 import { GetStudentById } from "@/services/student/student.service";
-import { EditTeacherById } from "@/services/teacher/teacher.service";
 import { EditUserById } from "@/services/user/user-service";
 import extractTokenInfo from "@/utils/extract.token";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import { useEffect, useState } from "react";
-import { Session } from "@/services/session/session.model";
-import { getSessionByClassId } from "@/services/session/session.service";
-import { getAllCourse } from "@/services/course/course.service";
 import { ServerResponse } from "@/cores/constant/response.constant";
 import { HttpStatusCode } from "axios";
+import { getQuizSessionById } from "@/services/quiz-session/quiz-session.service";
+import QuizResult from "@/components/shared/quizResult/quizResult.component";
+import IconGear from "@/components/shared/icons/iconGear";
+import Processing from "@/components/shared/processing/processing.component";
+import { QuizSession } from "@/services/quiz-session/quiz-session.models";
 
-const StudentDetail = ({ params }: { params: { studentId: string } }) => {
+const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
+  const [quizSession, setQuizSession] = useState<QuizSession>();
   const [studentData, setStudentData] = useState<Student | any>();
-
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formFieldsData, setFormFieldsData] = useState<any>();
   const [fieldsIsDisabled, setFieldsIsEditable] = useState<boolean>(true);
-
-  //
   const [userData, setUserData] = useState<Student | any>({});
   const [dataNotFound, setDataNotFound] = useState<boolean>(false);
-  const [allCourseData, setAllCourseData] = useState<CoursSelection[] | any>();
   const token = getLocalStorageItem("loginAccessToken") || "";
   const tokenInfo: any = extractTokenInfo(token);
-
-  /// Modal
   const [isOpen, setIsOpen] = useState<Boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [message, setMessage] = useState<ErrorMessage>();
 
   const closeModal = (value: boolean) => {
     setIsOpen(value);
+  };
+
+  const getQuizSessionDataById = async () => {
+    const response: ServerResponse = await getQuizSessionById(
+      params.quizSessionId
+    );
+
+    if (response.status == HttpStatusCode.Ok) {
+      setQuizSession(response.data.data);
+    }
+    getStudentData();
   };
 
   const getStudentData = async () => {
@@ -56,14 +61,11 @@ const StudentDetail = ({ params }: { params: { studentId: string } }) => {
       setDataNotFound(false);
       setIsLoading(false);
       const student: Student = response?.data.data;
-
       setStudentData(student);
-
       setFormFieldsData({
         username: student?.user.username,
         photo: student?.user.photo,
       });
-
       setUserData({ ...student.user });
     } else {
       setDataNotFound(true);
@@ -73,7 +75,7 @@ const StudentDetail = ({ params }: { params: { studentId: string } }) => {
   };
 
   useEffect(() => {
-    getStudentData();
+    getQuizSessionDataById();
   }, []);
 
   const handleChangeEditableFields = () => {
@@ -143,70 +145,6 @@ const StudentDetail = ({ params }: { params: { studentId: string } }) => {
 
   const screenSize = UseWindowSize();
 
-  const courseColumn = [
-    {
-      name: "Unité Enseignement",
-      selector: (row: CoursSelection) => row?.label,
-      maxWidth: screenSize.width < 1000 ? "110px" : "300px",
-      sortable: true,
-      cell: (row: CoursSelection) => {
-        const label = row?.label;
-        return <div>{label}</div>;
-      },
-    },
-    {
-      name: "Crédit",
-      selector: (row: CoursSelection) => row?.credit,
-      maxWidth: screenSize.width < 1000 ? "110px" : "300px",
-      sortable: true,
-      cell: (row: CoursSelection) => {
-        const credit = row?.credit;
-        return <div>{credit.toString()}</div>;
-      },
-    },
-    {
-      name: "Cours",
-      selector: (row: CoursSelection) => row?.courses,
-      maxWidth: screenSize.width < 1000 ? "110px" : "300px",
-      sortable: true,
-      cell: (row: CoursSelection) => {
-        const studentCourseIds = studentData?.registratedCourse?.map(
-          (course: { course: any }) => course.course._id
-        );
-        const obligatoryCourse =
-          studentData?.educationalClasses?.courseSelection.map(
-            (course: { courses: any }) => {
-              if (course.courses.length === 1) {
-                return course.courses[0]._id;
-              }
-            }
-          );
-        const courseName = row?.courses
-          .map((course) => {
-            if (
-              studentCourseIds?.includes(course._id) === true ||
-              obligatoryCourse?.includes(course._id) === true
-            ) {
-              return course.name;
-            }
-          })
-          .filter((course) => course !== undefined);
-        return (
-          <div
-            style={
-              courseName[0] !== undefined
-                ? {}
-                : { color: "red", fontSize: "13px" }
-            }
-          >
-            {courseName[0] !== undefined ? courseName : "Non sélectionné"}
-          </div>
-        );
-        // return <div>{allcourse}</div>
-      },
-    },
-  ];
-
   return (
     <>
       <DetailsSection>
@@ -220,53 +158,58 @@ const StudentDetail = ({ params }: { params: { studentId: string } }) => {
         {isLoading ? (
           <Loader />
         ) : (
-          <Details>
-            {!dataNotFound ? (
-              <Tabs
-                tabsConstant={[
-                  {
-                    label: "Infos persos",
-                    content: (
-                      <>
-                        {formFieldsData && (
-                          <FormFieldsEditable
-                            handleChangeEditableFields={
-                              handleChangeEditableFields
-                            }
-                            fieldsIsDisabled={fieldsIsDisabled}
-                            formData={formFieldsData}
-                            submitService={PersonalSubmitService}
-                            haveActionButton={true}
-                            haveImageProfile={true}
-                          >
-                            {studentData ? (
-                              <StudentFormFields
-                                fieldsIsDisabled={fieldsIsDisabled}
-                                data={studentData}
-                              />
-                            ) : (
-                              <Loader />
-                            )}
-                          </FormFieldsEditable>
-                        )}
-                      </>
-                    ),
-                  },
-                ]}
-              />
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                Le compte d'utilisateur n'est pas trouvé
-              </div>
-            )}
-          </Details>
+          <>
+            <Details>
+              {!dataNotFound ? (
+                <Tabs
+                  tabsConstant={[
+                    {
+                      label: "Infos persos",
+                      content: (
+                        <>
+                          {formFieldsData && (
+                            <FormFieldsEditable
+                              handleChangeEditableFields={
+                                handleChangeEditableFields
+                              }
+                              fieldsIsDisabled={fieldsIsDisabled}
+                              formData={formFieldsData}
+                              submitService={PersonalSubmitService}
+                              haveActionButton={true}
+                              haveImageProfile={true}
+                            >
+                              {studentData ? (
+                                <StudentFormFields
+                                  fieldsIsDisabled={fieldsIsDisabled}
+                                  data={studentData}
+                                />
+                              ) : (
+                                <Loader />
+                              )}
+                            </FormFieldsEditable>
+                          )}
+                        </>
+                      ),
+                    },
+                  ]}
+                />
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  Le compte d'utilisateur n'est pas trouvé
+                </div>
+              )}
+            </Details>
+            <Processing title="Résultat Quiz" titleIcon={<IconGear />}>
+              <QuizResult quizSession={quizSession} />
+            </Processing>
+          </>
         )}
       </DetailsSection>
     </>

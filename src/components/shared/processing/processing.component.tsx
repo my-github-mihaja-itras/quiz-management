@@ -1,4 +1,3 @@
-import IconGear from "../icons/iconGear";
 import style from "./processing.module.css";
 
 interface Processing<T> {
