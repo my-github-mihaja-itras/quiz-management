@@ -11,6 +11,8 @@
   background-color: #eeeeee;
   min-height: 40px;
   margin-top: 20px;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .containerChoice {
@@ -21,6 +23,7 @@
   align-items: center;
   padding: 5px 20px 5px 20px;
   min-height: 40px;
+  font-size: 12px;
 }
 .containerInputRadio{
     display: flex;
