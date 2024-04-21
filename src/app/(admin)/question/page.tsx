@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DetailsSection from "@/components/shared/details-section/details.section.components";
 import Details from "@/components/shared/details/details.components";
 import Tabs from "@/components/shared/tabs/tabs.components";
@@ -11,26 +11,16 @@ import Processing from "@/components/shared/processing/processing.component";
 import { HistoryType } from "@/components/shared/history/history.constant";
 import { getTime } from "@/utils/date.utils";
 import {
-  ActionType,
-  EntityName,
   translateActionName,
   translateEntityName,
 } from "@/cores/constant/constant.history";
 import { Media } from "react-data-table-component";
 import UseWindowSize from "@/cores/window/window.size";
-import {
-  addMultipleCursusService,
-  getHistoryByEntity,
-} from "@/services/cursus/cursus.service";
-import {
-  CursusAndHistory,
-  CursusMutipleToInsert,
-} from "@/services/cursus/cursus.models";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import extractTokenInfo from "@/utils/extract.token";
-import { getAllCursus } from "@/services/cursus/cursus.service";
-import { CursusType } from "@/services/cursus/cursus.models";
-import CursusFormFields from "@/components/form/question.form.fields";
+import {
+  QuestionFormFields,
+} from "@/components/form/question.form.fields";
 import { HttpStatusCode } from "axios";
 import History, {
   HistoryUser,
@@ -39,7 +29,6 @@ import IconCursus from "@/components/shared/icons/iconCursus";
 import FormFieldsEditableCursus from "@/components/shared/form-fields-cursus/form.fields.cursus";
 import {
   ChoiceOptions,
-  QuestionType,
   QuestionTypeToInsert,
 } from "@/services/question/question.models";
 import { addQuestionService } from "@/services/question/question.service";
@@ -59,6 +48,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
+  const [errorOnSubmit, setErrorOnSubmit] = useState<boolean>(false);
 
   const [registrationPeriodIsModified, setRegistrationPeriodIsModified] =
     useState<boolean>(false);
@@ -78,9 +68,9 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
   };
 
   const AddCursusSubmitService = async (data: any) => {
-    console.log(" ================= add Question");
-    console.log(data);
-    console.log(" ================= add Question");
+    // console.log(" ================= add Question");
+    // console.log(data);
+    // console.log(" ================= add Question");
     const question: QuestionTypeToInsert = {
       ...data,
       choice: getAllChoice(data.choice),
@@ -94,6 +84,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
           title: "Ajout effectué",
           message: "Votre question a bien été enregistrée !",
         });
+        setErrorOnSubmit(false);
       } else {
         setIsSuccess(false);
         setIsOpen(true);
@@ -103,11 +94,12 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
         });
       }
     } else {
+      setErrorOnSubmit(true);
       setIsSuccess(false);
       setIsOpen(true);
       setMessage({
         title: "Erreur",
-        message: "Veuillez sélectionner une réponse !",
+        message: "Veuillez bien verifier vos informations !",
       });
     }
   };
@@ -132,7 +124,10 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
             haveActionButton={true}
             haveImageProfile={false}
           >
-            <CursusFormFields fieldsIsDisabled={fieldsIsDisabled} />
+            <QuestionFormFields
+              fieldsIsDisabled={fieldsIsDisabled}
+              errorOnSubmit={errorOnSubmit}
+            />
           </FormFieldsEditableCursus>
         </>
       ),
@@ -305,7 +300,6 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
     },
   ];
 
-
   return (
     <DetailsSection>
       {isOpen && (
@@ -323,13 +317,13 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
             <Tabs tabsConstant={tabsConstant} />
           </Details>
 
-          <Processing title="Quiz" titleIcon={<IconCursus />}>
+          {/* <Processing title="Quiz" titleIcon={<IconCursus />}>
             <History
               columns={CursusHistoryColumn}
               data={cursusHistoryData}
               minHeight="73vh"
             />
-          </Processing>
+          </Processing> */}
         </>
       )}
     </DetailsSection>

@@ -4,7 +4,7 @@ import {
   InputText,
   InputTextArea,
 } from "../shared/form/input-field/input-field";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import IconDelete from "../shared/icons/iconDelete";
 import IconAdd from "../shared/icons/iconAdd";
 import extractTokenInfo from "@/utils/extract.token";
@@ -19,6 +19,7 @@ const token = getLocalStorageItem("loginAccessToken") || "";
 const tokenInfo: any = extractTokenInfo(token);
 interface QuestionFieldsProps {
   fieldsIsDisabled: boolean;
+  errorOnSubmit: boolean;
 }
 
 export const EMPTY_QUESTION_TO_ADD: ChoiceOptions = {
@@ -27,6 +28,7 @@ export const EMPTY_QUESTION_TO_ADD: ChoiceOptions = {
 
 export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
   fieldsIsDisabled,
+  errorOnSubmit,
 }) => {
   const [isVisibleLabel, setIsVisibleLabel] = useState<boolean>(false);
 
@@ -38,6 +40,8 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
     getValues,
     setValue,
     control,
+    setError,
+    clearErrors,
     resetField,
     formState: { errors, disabled },
   } = useFormContext<QuestionType>();
@@ -72,8 +76,14 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
     setValue("trueAnswer", Number(event.target.value));
+    clearErrors("trueAnswer");
   };
 
+  useEffect(() => {
+    if (errorOnSubmit) {
+      setError("trueAnswer", { type: "custom", message: "custom message" });
+    }
+  }, [errorOnSubmit]);
   return (
     <>
       <div className={style.formContainer}>
@@ -137,7 +147,11 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
                       value={index}
                       checked={selectedOption === index.toString()}
                       onChange={handleOptionChange}
-                      className={style.radioOnError}
+                      className={`${style.customRadio} ${
+                        errors.trueAnswer
+                          ? style.customRadioOnError
+                          : style.customRadioSuccess
+                      }`}
                     />
                   </div>
                   <>

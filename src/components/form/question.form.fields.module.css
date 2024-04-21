@@ -50,24 +50,50 @@
 
 .form .colDivWithoutIcon {
   display: grid;
-  grid-template-columns: 0.9fr 0.9fr ;
+  grid-template-columns: 0.9fr 0.9fr;
   margin-right: 5px;
 }
-.containerRadio{
-  /* background-color: red; */
+.containerRadio {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-/* .containerRadio input[type="radio"] {
-  appearance: none;  
+/* Styles pour les input radio personnalisés */
+.customRadio {
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 20px;  
-  height: 20px;  
-  border: 2px solid blue;  
-  border-radius: 50%;  
-  outline: none; 
-} */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  padding: 2px;
+  position: relative;
+}
+
+.customRadio::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.customRadio:checked::after {
+  background-color: #007bff;
+}
+
+.customRadioSuccess{
+  border: 2px solid #ccc !important ;
+}
+.customRadioOnError {
+  border: 2px solid #f70505 ;
+}
 
 .gap1 {
   gap: 16px;
@@ -92,11 +118,9 @@
   color: #5c5c5c;
 }
 
-.centerField{
-  /* display: flex;
-  justify-content: center; */
+.centerField {
   text-align: center;
-} 
+}
 .btnIcon {
   display: flex;
   justify-content: center;
