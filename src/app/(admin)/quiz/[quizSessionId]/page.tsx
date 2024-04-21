@@ -146,7 +146,7 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
                 </div>
               )}
             </Details>
-            <Processing title="Résultat Quiz" titleIcon={<IconGear />}>
+            <Processing title="Résultats du Quiz" titleIcon={<IconGear />}>
               <QuizResult quizSession={quizSession} />
             </Processing>
           </>
