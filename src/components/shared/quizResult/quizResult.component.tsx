@@ -12,7 +12,7 @@ const QuizResult = ({ quizSession }: { quizSession: QuizSession | any }) => {
         (quizItem: QuestionResult, quizItemIndex: number) => (
           <div className={style.quizItem} key={`quizItem${quizItemIndex}`}>
             <div className={style.question}>
-              {`Q ${quizItemIndex + 1} ) `} {quizItem.question.questionAsked}
+              {`Question ${quizItemIndex + 1} ) `} {quizItem.question.questionAsked}
             </div>
             {quizItem.question.choice.map((choice, choiceIndex) => (
               <div
