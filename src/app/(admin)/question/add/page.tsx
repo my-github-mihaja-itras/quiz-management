@@ -18,9 +18,7 @@ import { Media } from "react-data-table-component";
 import UseWindowSize from "@/cores/window/window.size";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import extractTokenInfo from "@/utils/extract.token";
-import {
-  QuestionFormFields,
-} from "@/components/form/question.form.fields";
+import { QuestionFormFields } from "@/components/form/question.form.fields";
 import { HttpStatusCode } from "axios";
 import History, {
   HistoryUser,
@@ -32,6 +30,7 @@ import {
   QuestionTypeToInsert,
 } from "@/services/question/question.models";
 import { addQuestionService } from "@/services/question/question.service";
+import { useRouter } from "next/navigation";
 
 const token = getLocalStorageItem("loginAccessToken") || "";
 
@@ -55,11 +54,12 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
 
   const [message, setMessage] = useState<ErrorMessage>();
 
-  const [cursusHistoryData, setCursusHistoryData] = useState<HistoryType[]>([]);
+  const router = useRouter();
 
   const closeModal = (value: boolean) => {
     setIsOpen(value);
     setRegistrationPeriodIsModified(!registrationPeriodIsModified);
+    isSuccess ? router.push("/question/") : "";
     setIsSuccess(false);
   };
 
@@ -68,9 +68,6 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
   };
 
   const AddCursusSubmitService = async (data: any) => {
-    // console.log(" ================= add Question");
-    // console.log(data);
-    // console.log(" ================= add Question");
     const question: QuestionTypeToInsert = {
       ...data,
       choice: getAllChoice(data.choice),
