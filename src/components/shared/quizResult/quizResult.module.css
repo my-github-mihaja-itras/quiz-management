@@ -4,6 +4,7 @@
   padding: 0px 20px 20px 20px;
   height: 77vh;
   overflow-y: scroll;
+  pointer-events: none;
 }
 .question {
   display: flex;
