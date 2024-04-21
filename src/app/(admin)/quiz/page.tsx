@@ -67,7 +67,7 @@ const RoleList = () => {
   const roleColumns = [
     {
       name: "Numéro",
-      selector: (row: QuizSession) => row?._id,
+      selector: (row: QuizSession, index: number) => "Quiz-"+(index+1),
       sortable: true,
     },
 

@@ -64,7 +64,7 @@ const RoleList = () => {
       selector: (row: QuestionType) => row?._id,
       sortable: true,
       cell: (row: QuestionType) => {
-        return <div className={style.tabCell}>Question -{row?.questionNumber}</div>;
+        return <div className={style.tabCell}>Question - {row?.questionNumber}</div>;
       },
     },
 
