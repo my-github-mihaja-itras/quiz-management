@@ -23,6 +23,7 @@ import Processing from "@/components/shared/processing/processing.component";
 import { QuizSession } from "@/services/quiz-session/quiz-session.models";
 import UserQuizFormFields from "@/components/form/userQuiz.form.fields";
 import { User } from "@/services/user/user.models";
+import IconQuiz from "@/components/shared/icons/IconQuiz";
 
 const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
   const [quizSession, setQuizSession] = useState<QuizSession>();
@@ -146,7 +147,7 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
                 </div>
               )}
             </Details>
-            <Processing title="Résultats du Quiz" titleIcon={<IconGear />}>
+            <Processing title="Résultats du Quiz" titleIcon={<IconQuiz />}>
               <QuizResult quizSession={quizSession} />
             </Processing>
           </>
