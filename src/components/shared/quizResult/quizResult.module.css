@@ -2,6 +2,8 @@
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
   padding: 0px 20px 20px 20px;
+  height: 77vh;
+  overflow-y: scroll;
 }
 .question {
   display: flex;
