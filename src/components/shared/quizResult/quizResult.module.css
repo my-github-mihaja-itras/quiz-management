@@ -4,7 +4,7 @@
   padding: 0px 20px 20px 20px;
   height: 77vh;
   overflow-y: scroll;
-  pointer-events: none;
+ 
 }
 .question {
   display: flex;
@@ -27,6 +27,7 @@
   padding: 5px 20px 5px 20px;
   min-height: 40px;
   font-size: 12px;
+  pointer-events: none;
 }
 .containerInputRadio{
     display: flex;
