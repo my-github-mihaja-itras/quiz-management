@@ -1,333 +1,267 @@
 "use client";
 
-import { useState } from "react";
-import DetailsSection from "@/components/shared/details-section/details.section.components";
-import Details from "@/components/shared/details/details.components";
-import Tabs from "@/components/shared/tabs/tabs.components";
+import { DeleteRoleById } from "@/services/role/role.service";
+import { useEffect, useState } from "react";
+import ListSection from "@/components/shared/liste-section/listSection.component";
 import Loader from "@/components/loader/loader";
 
-import ErrorModal, { ErrorMessage } from "@/components/modal/errorModal";
-import Processing from "@/components/shared/processing/processing.component";
-import { HistoryType } from "@/components/shared/history/history.constant";
-import { getTime } from "@/utils/date.utils";
 import {
-  translateActionName,
-  translateEntityName,
-} from "@/cores/constant/constant.history";
-import { Media } from "react-data-table-component";
-import UseWindowSize from "@/cores/window/window.size";
-import { getLocalStorageItem } from "@/utils/localStorage.utils";
+  roleFilterByItem,
+  roleFilterConstant,
+} from "@/cores/filterConstants/role.constant";
+import { Group } from "@/services/group/group.models";
+import { ParsedType } from "@/components/shared/filter/filter.constant";
+import style from "./student.module.css";
+import ConfirmModal from "@/components/modal/confirmModal";
 import extractTokenInfo from "@/utils/extract.token";
-import {
-  QuestionFormFields,
-} from "@/components/form/question.form.fields";
-import { HttpStatusCode } from "axios";
-import History, {
-  HistoryUser,
-} from "@/components/shared/history/history.component";
-import IconCursus from "@/components/shared/icons/iconCursus";
-import FormFieldsEditableCursus from "@/components/shared/form-fields-cursus/form.fields.cursus";
-import {
-  ChoiceOptions,
-  QuestionTypeToInsert,
-} from "@/services/question/question.models";
-import { addQuestionService } from "@/services/question/question.service";
+import { ActionType, EntityName } from "@/cores/constant/constant.history";
+import { getLocalStorageItem } from "@/utils/localStorage.utils";
+import Dropdown from "@/components/shared/dropdown/dropDown.component";
+import IconEdit from "@/components/shared/icons/iconEdit";
+import { useRouter } from "next/navigation";
+import { getQuizSessionPaginated } from "@/services/quiz-session/quiz-session.service";
+import { QuizSession } from "@/services/quiz-session/quiz-session.models";
+import { getDate, getTime } from "@/utils/date.utils";
+import { QuestionType } from "@/services/question/question.models";
+import { getQuestionPaginated } from "@/services/question/question.service";
 
-const token = getLocalStorageItem("loginAccessToken") || "";
+const RoleList = () => {
+  const [groups, setGroups] = useState<Group[]>([]);
 
-const tokenInfo: any = extractTokenInfo(token);
+  const [currentPageNumber, setCurrentPageNumberPage] = useState<number>(1);
 
-const SettingPage = ({ params }: { params: { candidateId: string } }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [totalRows, setTotalRows] = useState<number>(0);
 
-  const [formFieldsData, setFormFieldsData] = useState<any>();
+  const [rowPerPage, setRowPerPage] = useState<number>(20);
 
-  const [fieldsIsDisabled, setFieldsIsEditable] = useState<boolean>(false);
+  const [isLoading, setisLoading] = useState<boolean>(true);
 
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
+  const [totalPage, setTotalPage] = useState<number>(0);
 
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [updatedFilter, setUpdatedFilter] = useState(roleFilterConstant);
 
-  const [errorOnSubmit, setErrorOnSubmit] = useState<boolean>(false);
+  const [isOpenModalDelete, setIsOpenModalDelete] = useState<Boolean>(false);
 
-  const [registrationPeriodIsModified, setRegistrationPeriodIsModified] =
-    useState<boolean>(false);
+  const [message, setMessage] = useState<any>();
 
-  const [message, setMessage] = useState<ErrorMessage>();
+  const [openDropdownId, setOpenDropdownId] = useState(null);
 
-  const [cursusHistoryData, setCursusHistoryData] = useState<HistoryType[]>([]);
+  const token = getLocalStorageItem("loginAccessToken") || "";
 
-  const closeModal = (value: boolean) => {
-    setIsOpen(value);
-    setRegistrationPeriodIsModified(!registrationPeriodIsModified);
-    setIsSuccess(false);
-  };
+  const tokenInfo: any = extractTokenInfo(token);
 
-  const handleChangeEditableFields = () => {
-    setFieldsIsEditable(!fieldsIsDisabled);
-  };
+  //Search Keywords
+  const [searchKeywords, setSearchKeywords] = useState<string>("");
 
-  const AddCursusSubmitService = async (data: any) => {
-    // console.log(" ================= add Question");
-    // console.log(data);
-    // console.log(" ================= add Question");
-    const question: QuestionTypeToInsert = {
-      ...data,
-      choice: getAllChoice(data.choice),
-    };
-    if (data.trueAnswer != null) {
-      const response = await addQuestionService(question);
-      if (response.status === HttpStatusCode.Created) {
-        setIsSuccess(true);
-        setIsOpen(true);
-        setMessage({
-          title: "Ajout effectué",
-          message: "Votre question a bien été enregistrée !",
-        });
-        setErrorOnSubmit(false);
-      } else {
-        setIsSuccess(false);
-        setIsOpen(true);
-        setMessage({
-          title: "Erreur",
-          message: "Veuillez bien verifier vos informations !",
-        });
-      }
-    } else {
-      setErrorOnSubmit(true);
-      setIsSuccess(false);
-      setIsOpen(true);
-      setMessage({
-        title: "Erreur",
-        message: "Veuillez bien verifier vos informations !",
-      });
-    }
-  };
-  const getAllChoice = (choiceOptions: ChoiceOptions[]) => {
-    let tab: string[] = [];
-    choiceOptions.map((choiceOptions) => {
-      tab.push(choiceOptions.choiceOptions);
-    });
-    return tab;
-  };
+  // State pour les données a insérer dans la table
+  const [roleData, setRoleData] = useState<QuestionType[]>([]);
 
-  const tabsConstant = [
+  const router = useRouter();
+
+  const roleColumns = [
     {
-      label: "Création Question",
-      content: (
-        <>
-          <FormFieldsEditableCursus
-            handleChangeEditableFields={handleChangeEditableFields}
-            fieldsIsDisabled={false}
-            formData={formFieldsData}
-            submitService={AddCursusSubmitService}
-            haveActionButton={true}
-            haveImageProfile={false}
-          >
-            <QuestionFormFields
-              fieldsIsDisabled={fieldsIsDisabled}
-              errorOnSubmit={errorOnSubmit}
-            />
-          </FormFieldsEditableCursus>
-        </>
-      ),
-    },
-  ];
-
-  const columnStyles = {
-    width: "auto",
-    minWidth: "100px",
-  };
-
-  /* Médias queries pour ajuster la largeur des colonnes en fonction de la largeur de l'écran */
-  const responsiveColumnStyles = {
-    "@media only screen and (max-width: 767px)": {
-      width: "100%",
-      padding: "0",
-    },
-    "@media only screen and (min-width: 768px) and (max-width: 991px)": {
-      width: "50%",
-    },
-    "@media only screen and (min-width: 992px) and (max-width: 1199px)": {
-      width: "33%",
-    },
-    "@media only screen and (min-width: 1200px)": {
-      width: "25%",
-    },
-  };
-
-  // To get the screen size
-  const screenSize = UseWindowSize();
-
-  const CursusHistoryColumn = [
-    {
-      name: "Utilisateur",
-      selector: (row: HistoryType) => row?.user?._id,
+      name: "Numéro",
+      selector: (row: QuestionType) => row?._id,
       sortable: true,
-      width: screenSize.width < 600 ? "100%" : "160px",
-      style: { ...columnStyles, ...responsiveColumnStyles },
-
-      cell: (row: HistoryType) => {
-        let date: string | undefined = undefined;
-        const actionName = translateActionName(row?.action?.name);
-        const entityName = translateEntityName(row?.action?.name);
-
-        if (row?.createdAt) {
-          date = new Date(row.createdAt).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          });
-        }
-        const time = getTime(row?.createdAt);
-
-        return screenSize.width < 600 ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "start",
-              gap: "10px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "130px",
-              }}
-            >
-              <HistoryUser
-                photo={row?.user?.photo}
-                name={row?.user?.firstname}
-              />
-              <div
-                style={{
-                  color: "5C5C5C",
-                  fontFamily: "Roboto",
-                  paddingLeft: "28px",
-                  width: "130px",
-                }}
-              >
-                {date}, {time}
-              </div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>
-                {`a ${actionName} ${entityName}`}
-                {row?.action?.proof && (
-                  <>
-                    :{" "}
-                    <span
-                      style={{
-                        color: "#5C5C5C",
-                        fontFamily: "Roboto",
-                        fontSize: "12px",
-                        fontStyle: "normal",
-                        fontWeight: 700,
-                        lineHeight: "normal",
-                      }}
-                    >
-                      "{row?.action?.proof}"
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <HistoryUser photo={row?.user?.photo} name={row?.user?.firstname} />
-        );
+      cell: (row: QuestionType) => {
+        return <div className={style.tabCell}>Q-{row?.questionNumber}</div>;
       },
     },
+
     {
-      name: "Action",
-      selector: (row: HistoryType) => row?.action.name,
+      name: "Sujet",
+      selector: (row: QuestionType) => row?.questionAsked,
       sortable: true,
-      hide: Media.SM || Media.MD,
-      style: { ...columnStyles, ...responsiveColumnStyles },
-      cell: (row: HistoryType) => {
-        const actionName = translateActionName(row?.action?.name);
-        const entityName = translateEntityName(row?.action?.name);
+    },
+
+    {
+      name: "Date Utilisation",
+      selector: (row: QuestionType) => row?._id,
+      sortable: true,
+      cell: (row: QuestionType) => {
+        const date = getDate(row?.wasUsedDate);
+        const time = getTime(row?.wasUsedDate);
         return (
           <div>
-            {`a ${actionName} ${entityName}`}
-            {row?.action?.proof && (
+            {row?.wasUsedDate ? (
               <>
-                :{" "}
-                <span
-                  style={{
-                    color: "#5C5C5C",
-                    fontFamily: "Roboto",
-                    fontSize: "12px",
-                    fontStyle: "normal",
-                    fontWeight: 700,
-                    lineHeight: "normal",
-                  }}
-                >
-                  "{row?.action?.proof}"
-                </span>
+                {date} <span style={{ color: "#B4B4B4" }}> {time} </span>
               </>
+            ) : (
+              "Non utilisée"
             )}
           </div>
         );
       },
     },
     {
-      name: "Date",
-      selector: (row: HistoryType) => row?.createdAt,
+      name: "Nbre Choix",
+      selector: (row: QuestionType) => row?._id,
       sortable: true,
-      width: "145px",
-      style: { ...columnStyles, ...responsiveColumnStyles },
-      hide: Media.SM || Media.MD,
-      cell: (row: HistoryType) => {
-        let date: string | undefined = undefined;
-
-        if (row?.createdAt) {
-          date = new Date(row.createdAt).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          });
-        }
-        const time = getTime(row?.createdAt);
-        return (
-          <div style={{ color: "5C5C5C", fontFamily: "Roboto" }}>
-            {date}, {time}
-          </div>
-        );
+      cell: (row: QuestionType) => {
+        return <div className={style.tabCell}>{row?.choice.length}</div>;
       },
     },
+
+    // {
+    //   name: "",
+    //   button: true,
+    //   allowOverflow: true,
+    //   width: "5%",
+    //   center: true,
+    //   cell: (row: QuestionType) => {
+    //     function handleEdit(_id: string): void {
+    //       router.push("/question/" + _id);
+    //     }
+    //     const [openDropdownId, setOpenDropdownId] = useState(null);
+    //     const handleToggleDropdown = (id: any) => {
+    //       setOpenDropdownId((prevId) => (prevId === id ? null : id));
+    //     };
+    //     return (
+    //       <div>
+    //         <Dropdown
+    //           id={row?._id}
+    //           key={row?._id}
+    //           isOpen={openDropdownId === row?._id}
+    //           onToggle={handleToggleDropdown}
+    //         >
+    //           <button onClick={() => row?._id && handleEdit(row?._id)}>
+    //             <IconEdit /> <span style={{ color: "#0231A8" }}>Consulter</span>
+    //           </button>
+    //         </Dropdown>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
+  const fetchData = async () => {
+    const res = await getQuestionPaginated(
+      currentPageNumber,
+      rowPerPage,
+      searchKeywords
+    );
+
+    const totalItems = res.data.totalItems;
+    const totalPage = res.data.pageNumber;
+    setTotalRows(totalItems);
+    setTotalPage(totalPage);
+
+    const roleData: QuestionType[] = res.data.items;
+    setRoleData(roleData);
+
+    setisLoading(false);
+  };
+
+  // Extract keywords for search
+  const handleSearchKeywordsChange = (keywords: any) => {
+    setSearchKeywords(keywords);
+  };
+
+  const closeModalDelete = (value: boolean) => {
+    setIsOpenModalDelete(value);
+  };
+
+  const handleDeleteConfirmation = async (role_id: string) => {
+    const history = {
+      action: { name: ActionType.DELETE_ROLE },
+      user: tokenInfo._id,
+      targetId: role_id,
+      entity: EntityName.ROLE,
+    };
+    const response = await DeleteRoleById(role_id, history);
+    if (response.status === 200) {
+      window.location.reload();
+      setIsOpenModalDelete(false);
+      setisLoading(false);
+    } else {
+      setIsOpenModalDelete(false);
+      setisLoading(false);
+    }
+  };
+
+  // Fonction qui attribue le numero de page
+  const handleChangePage = (currentPageNumber: any) => {
+    setCurrentPageNumberPage(currentPageNumber);
+  };
+
+  // Fonction qui attribue la nombre d'element par page
+  const handleChangeRowPerPage = (rowPerPage: any) => {
+    setRowPerPage(rowPerPage);
+    if (rowPerPage === totalRows) {
+      setCurrentPageNumberPage(1);
+    }
+  };
+
+  // Fonction qui fait mets a jour le constant du filtre si le filtre est variable
+  const updateFiltersConstant = (
+    dataToTransform: any,
+    title: string,
+    name: string,
+    type: ParsedType
+  ) => {
+    const transformedData = dataToTransform.map((item: any) => ({
+      label: item.name,
+      value: item.name,
+    }));
+
+    setUpdatedFilter((prevFilters) => {
+      const newFilters = [
+        ...prevFilters,
+        {
+          title,
+          name,
+          type,
+          element: transformedData,
+        },
+      ];
+      return newFilters;
+    });
+  };
+
+  useEffect(() => {
+    setUpdatedFilter(roleFilterConstant);
+    updateFiltersConstant(groups, "Groupe", "groups.name", ParsedType.LIST);
+  }, [groups]);
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPageNumber, rowPerPage, searchKeywords]);
 
   return (
-    <DetailsSection>
-      {isOpen && (
-        <ErrorModal
-          close={closeModal}
+    <>
+      {isOpenModalDelete && (
+        <ConfirmModal
+          close={closeModalDelete}
           message={message}
-          color={isSuccess ? "#0fc3ed" : "#dc3545"}
-        ></ErrorModal>
+          handleConfirmation={handleDeleteConfirmation}
+        />
       )}
       {isLoading ? (
         <Loader />
       ) : (
-        <>
-          <Details>
-            <Tabs tabsConstant={tabsConstant} />
-          </Details>
-
-          {/* <Processing title="Quiz" titleIcon={<IconCursus />}>
-            <History
-              columns={CursusHistoryColumn}
-              data={cursusHistoryData}
-              minHeight="73vh"
-            />
-          </Processing> */}
-        </>
+        <ListSection
+          listeTitle="Questions"
+          tableColumns={roleColumns}
+          tableData={roleData}
+          tableTotalRows={totalRows}
+          handlePageNumberChange={handleChangePage}
+          handleRowPerPageNumberChange={handleChangeRowPerPage}
+          currentPageNumber={currentPageNumber}
+          totalRowPerPage={rowPerPage}
+          hasAddButton={true}
+          hasFilter={false}
+          hasChoiceFilter={false}
+          hasDateFilter={false}
+          conditionalFilter={roleFilterByItem}
+          redirectLink={"/roles/add"}
+          isLoading={isLoading}
+          totalPageNumber={totalPage}
+          handleSearchKeywordsChange={handleSearchKeywordsChange}
+          allDataToExport={roleData}
+        />
       )}
-    </DetailsSection>
+    </>
   );
 };
 
-export default SettingPage;
+export default RoleList;

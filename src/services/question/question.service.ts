@@ -5,17 +5,48 @@ import { QuestionTypeToInsert } from "./question.models";
 
 const token = getLocalStorageItem("loginAccessToken");
 
-// export async function getAllQuestion(): Promise<any> {
-//   try {
-//     const response = await axios.get(`${api.question.index}`, {
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
+export async function getQuestionPaginated(
+  page: number,
+  pageSize: number,
+  searchKeywords: string
+): Promise<any> {
+  try {
+    const token = getLocalStorageItem("loginAccessToken");
+    const search = `&search=${searchKeywords}`;
+    const response = await axios.get(
+      `${
+        api.question.list
+      }?page=${page.toString()}&pageSize=${pageSize.toString()}${search}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-//     return response.data;
+    return response.data;
+  } catch (error: any) {
+    return error.response;
+  }
+}
+
+// export async function getQuestionById(questionId: string): Promise<any> {
+//   try {
+//     const token = getLocalStorageItem("loginAccessToken");
+//     const response = await axios.get(
+//       `${api.question.index}/${questionId}`,
+//       {
+//         headers: {
+//           Accept: "application/json",
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+
+//     return response;
 //   } catch (error: any) {
 //     return error.response;
 //   }

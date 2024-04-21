@@ -92,6 +92,7 @@ export const api = {
   },
   question: {
     index: `${process.env.API_BASE_URL}/question`,
+    list: `${process.env.API_BASE_URL}/question/list`,
   },
   quizSession: {
     index: `${process.env.API_BASE_URL}/quizSession`,
