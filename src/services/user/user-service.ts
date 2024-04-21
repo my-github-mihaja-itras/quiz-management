@@ -80,6 +80,23 @@ export async function getAllUser(): Promise<any> {
   }
 }
 
+export async function getUserById(userId: string): Promise<any> {
+  try {
+    const token = getLocalStorageItem("loginAccessToken") || "";
+    const response = await axios.get(`${api.user.index}/${userId}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+}
+
 export async function getGroupCount(): Promise<any> {
   try {
     const token = getLocalStorageItem("loginAccessToken");

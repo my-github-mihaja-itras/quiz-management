@@ -1,6 +1,5 @@
 "use client";
 
-import StudentFormFields from "@/components/form/student.form.fields";
 import Loader from "@/components/loader/loader";
 import ErrorModal, { ErrorMessage } from "@/components/modal/errorModal";
 import DetailsSection from "@/components/shared/details-section/details.section.components";
@@ -9,9 +8,9 @@ import FormFieldsEditable from "@/components/shared/form-fields/form.fields.comp
 import Tabs from "@/components/shared/tabs/tabs.components";
 import { ActionType } from "@/cores/constant/constant.history";
 import UseWindowSize from "@/cores/window/window.size";
-import { Student } from "@/services/student/student.models";
+
 import { GetStudentById } from "@/services/student/student.service";
-import { EditUserById } from "@/services/user/user-service";
+import { EditUserById, getUserById } from "@/services/user/user-service";
 import extractTokenInfo from "@/utils/extract.token";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import { useEffect, useState } from "react";
@@ -22,14 +21,16 @@ import QuizResult from "@/components/shared/quizResult/quizResult.component";
 import IconGear from "@/components/shared/icons/iconGear";
 import Processing from "@/components/shared/processing/processing.component";
 import { QuizSession } from "@/services/quiz-session/quiz-session.models";
+import UserQuizFormFields from "@/components/form/userQuiz.form.fields";
+import { User } from "@/services/user/user.models";
 
 const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
   const [quizSession, setQuizSession] = useState<QuizSession>();
-  const [studentData, setStudentData] = useState<Student | any>();
+  const [userData, setUserData] = useState<User | any>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formFieldsData, setFormFieldsData] = useState<any>();
   const [fieldsIsDisabled, setFieldsIsEditable] = useState<boolean>(true);
-  const [userData, setUserData] = useState<Student | any>({});
+ 
   const [dataNotFound, setDataNotFound] = useState<boolean>(false);
   const token = getLocalStorageItem("loginAccessToken") || "";
   const tokenInfo: any = extractTokenInfo(token);
@@ -48,25 +49,23 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
 
     if (response.status == HttpStatusCode.Ok) {
       setQuizSession(response.data.data);
+      getUserData(response.data.data.user._id);
     }
-    getStudentData();
   };
 
-  const getStudentData = async () => {
-    const response: ServerResponse = await GetStudentById(
-      "66215c9c03b1b6a9b385589c"
-    );
-
+  const getUserData = async (userId: string) => {
+    const response: ServerResponse = await getUserById(userId);
+    // console.log(response);
     if (response.status === HttpStatusCode.Ok) {
       setDataNotFound(false);
       setIsLoading(false);
-      const student: Student = response?.data.data;
-      setStudentData(student);
+      const user: User = response?.data.data;
+
+      setUserData(user);
       setFormFieldsData({
-        username: student?.user.username,
-        photo: student?.user.photo,
+        username: user?.username,
+        photo: user?.photo,
       });
-      setUserData({ ...student.user });
     } else {
       setDataNotFound(true);
       setIsLoading(false);
@@ -82,66 +81,7 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
     setFieldsIsEditable(!fieldsIsDisabled);
   };
 
-  const PersonalSubmitService = async (data: any) => {
-    const {
-      username,
-      email,
-      groups,
-      roles,
-      gender,
-      lastname,
-      firstname,
-      birthDate,
-      birthPlace,
-      address,
-      city,
-      postalCode,
-      photo,
-      phone,
-      isActive,
-    } = data;
-
-    let isActiveUpdate;
-    if (typeof isActive === "undefined") {
-      isActiveUpdate = isActive;
-    } else {
-      isActiveUpdate = isActive;
-    }
-
-    const user = {
-      _id: userData._id,
-      username,
-      email,
-      groups,
-      roles,
-      gender,
-      lastname,
-      firstname,
-      birthDate,
-      birthPlace,
-      address: `${address}&&${postalCode}&&${city}`,
-      photo,
-      phone,
-      isActive: isActiveUpdate,
-    };
-    // const studentData = { timeWork: timeWork };
-    const history = {
-      action: { name: ActionType.UPDATE_USER },
-      user: tokenInfo._id,
-      targetId: userData._id,
-      entity: "User",
-    };
-    const response = await EditUserById(user._id, user, history);
-    if (response.status === 200) {
-      setFieldsIsEditable(!fieldsIsDisabled);
-      setIsSuccess(true);
-      setMessage({
-        title: "Modification effectué",
-        message: "Les mises à jour ont été effectuées avec succès.",
-      });
-      setIsOpen(true);
-    }
-  };
+  const PersonalSubmitService = async (data: any) => {};
 
   const screenSize = UseWindowSize();
 
@@ -175,13 +115,13 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
                               fieldsIsDisabled={fieldsIsDisabled}
                               formData={formFieldsData}
                               submitService={PersonalSubmitService}
-                              haveActionButton={true}
+                              haveActionButton={false}
                               haveImageProfile={true}
                             >
-                              {studentData ? (
-                                <StudentFormFields
+                              {userData ? (
+                                <UserQuizFormFields
                                   fieldsIsDisabled={fieldsIsDisabled}
-                                  data={studentData}
+                                  data={userData}
                                 />
                               ) : (
                                 <Loader />

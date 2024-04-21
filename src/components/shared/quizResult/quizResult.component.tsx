@@ -5,7 +5,7 @@ import {
 import style from "./quizResult.module.css";
 
 const QuizResult = ({ quizSession }: { quizSession: QuizSession | any }) => {
-  console.log(quizSession);
+  // console.log(quizSession);
   return (
     <div className={style.layout}>
       {quizSession.quiz.map(
