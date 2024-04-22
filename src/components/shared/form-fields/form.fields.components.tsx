@@ -73,7 +73,12 @@ const FormFieldsEditable: React.FC<FormFieldsEditableProps<any>> = ({
         className={style.formFieldContainer}
         onSubmit={methods.handleSubmit(onSubmit, onError)}
       >
-        <div className={style.form}>
+        <div
+          className={`${style.form} 
+          ${
+            haveActionButton ? style.formWithButton:  style.formWithoutButton
+          }`}
+        >
           {haveImageProfile && (
             <div className={style.profileContainer}>
               <div className={style.imageContainer}>
