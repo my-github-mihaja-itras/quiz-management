@@ -51,7 +51,7 @@ export const MENU: Menu[] = [
     child: [],
   },
   {
-    label: "Question",
+    label: "Questions",
     icon: "/resources/icons/registration.svg",
     bleuIcon: "/resources/icons/blueRegistration.svg",
     link: "/question",
@@ -59,7 +59,7 @@ export const MENU: Menu[] = [
     child: [],
   },
   {
-    label: "Quiz Session",
+    label: "Sessions Quiz",
     icon: "/resources/icons/candidate.svg",
     bleuIcon: "/resources/icons/blueCandidate.svg",
     link: "/quiz",

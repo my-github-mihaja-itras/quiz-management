@@ -243,7 +243,7 @@ const RoleList = () => {
         <Loader />
       ) : (
         <ListSection
-          listeTitle="Quiz Session"
+          listeTitle="Sessions Quiz"
           tableColumns={roleColumns}
           tableData={roleData}
           tableTotalRows={totalRows}
