@@ -29,7 +29,7 @@ import { getQuizSessionPaginated } from "@/services/quiz-session/quiz-session.se
 import { QuizSession } from "@/services/quiz-session/quiz-session.models";
 import { getDate, getTime } from "@/utils/date.utils";
 
-const RoleList = () => {
+const QuizList = () => {
   const [groups, setGroups] = useState<Group[]>([]);
 
   const [currentPageNumber, setCurrentPageNumberPage] = useState<number>(1);
@@ -267,4 +267,4 @@ const RoleList = () => {
   );
 };
 
-export default RoleList;
+export default QuizList;
