@@ -2,8 +2,9 @@ export interface QuestionType {
   _id?: string;
   questionNumber?: number;
   questionAsked: string;
-  choice: string[] | Choice[];
-  trueAnswer: number;
+  choice:  Choice[];
+  // choice: string[] | Choice[];
+  trueAnswer: string;
   wasUsedDate?: Date;
 }
 

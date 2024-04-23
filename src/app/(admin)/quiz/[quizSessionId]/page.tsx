@@ -31,7 +31,7 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formFieldsData, setFormFieldsData] = useState<any>();
   const [fieldsIsDisabled, setFieldsIsEditable] = useState<boolean>(true);
- 
+
   const [dataNotFound, setDataNotFound] = useState<boolean>(false);
   const token = getLocalStorageItem("loginAccessToken") || "";
   const tokenInfo: any = extractTokenInfo(token);
@@ -48,10 +48,22 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
       params.quizSessionId
     );
 
-    if (response.status == HttpStatusCode.Ok) {
+    if (response.status === HttpStatusCode.Ok) {
       setQuizSession(response.data.data);
-      getUserData(response.data.data.user._id);
+      setDataNotFound(false);
+      setIsLoading(false);
+      const user: User = response?.data.data;
+
+      setUserData(user);
+      setFormFieldsData({
+        username: user?.username,
+        photo: user?.photo,
+      });
+    } else {
+      setDataNotFound(true);
+      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   const getUserData = async (userId: string) => {
@@ -100,7 +112,7 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
           <Loader />
         ) : (
           <>
-            <Details>
+            {/* <Details>
               {!dataNotFound ? (
                 <Tabs
                   tabsConstant={[
@@ -146,7 +158,7 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
                   Le compte d'utilisateur n'est pas trouvé
                 </div>
               )}
-            </Details>
+            </Details> */}
             <Processing title="Résultats du Quiz" titleIcon={<IconQuiz />}>
               <QuizResult quizSession={quizSession} />
             </Processing>

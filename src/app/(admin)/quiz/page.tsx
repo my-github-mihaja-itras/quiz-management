@@ -54,7 +54,7 @@ const QuizList = () => {
 
   const tokenInfo: any = extractTokenInfo(token);
 
-  const [countUserByRole, setCounUserByRole] = useState<any[]>();
+ 
 
   //Search Keywords
   const [searchKeywords, setSearchKeywords] = useState<string>("");
@@ -71,18 +71,6 @@ const QuizList = () => {
       sortable: true,
     },
 
-    {
-      name: "Utilisateur",
-      selector: (row: QuizSession) => row?._id,
-      sortable: true,
-      cell: (row: QuizSession) => {
-        return (
-          <div className={style.tabCell}>
-            {row?.user.firstname} {row?.user.lastname}{" "}
-          </div>
-        );
-      },
-    },
 
     {
       name: "Date Utilisation",

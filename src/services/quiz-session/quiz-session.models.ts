@@ -3,7 +3,6 @@ import { User } from "../user/user.models";
 
 export interface QuizSession {
   _id?: string;
-  user: User;
   quiz: QuestionResult[];
   createdAt?: string;
 }
@@ -11,5 +10,5 @@ export interface QuizSession {
 export interface QuestionResult {
   _id?: string;
   question:  QuestionType;
-  userAnswer: number;
+  userAnswer: string;
 }
