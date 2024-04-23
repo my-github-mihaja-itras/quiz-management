@@ -2,17 +2,12 @@ export interface QuestionType {
   _id?: string;
   questionNumber?: number;
   questionAsked: string;
-  choice: string[] | ChoiceOptions[];
+  choice: string[] | Choice[];
   trueAnswer: number;
   wasUsedDate?: Date;
 }
 
-export interface ChoiceOptions {
-  choiceOptions: string;
-}
-
-export interface QuestionTypeToInsert {
-  questionAsked: string;
-  choice: string[];
-  trueAnswer: number;
+export interface Choice {
+  _id?:string;
+  choiceValue: string;
 }

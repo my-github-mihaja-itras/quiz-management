@@ -11,7 +11,7 @@ import extractTokenInfo from "@/utils/extract.token";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import UseWindowSize from "@/cores/window/window.size";
 import {
-  ChoiceOptions,
+  Choice,
   QuestionType,
 } from "@/services/question/question.models";
 
@@ -22,8 +22,8 @@ interface QuestionFieldsProps {
   errorOnSubmit: boolean;
 }
 
-export const EMPTY_QUESTION_TO_ADD: ChoiceOptions = {
-  choiceOptions: "",
+export const EMPTY_QUESTION_TO_ADD: Choice = {
+  choiceValue: "",
 };
 
 export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
@@ -67,7 +67,7 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
   };
 
   const handleRemoveQuestionTabField = (index: number) => {
-    resetField(`choice.${index}.choiceOptions`);
+    resetField(`choice.${index}.choiceValue`);
     questionToInsertRemove(index);
   };
 
@@ -133,8 +133,8 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
                   <div className={`${style.colDiv1} ${style.my5}`}>
                     <InputTextArea
                       label={`${screenSize.width < 736 ? "Description" : ""}`}
-                      onChange={`choice.${index}.choiceOptions`}
-                      fieldName={`choice.${index}.choiceOptions`}
+                      onChange={`choice.${index}.choiceValue`}
+                      fieldName={`choice.${index}.choiceValue`}
                       register={register}
                       readOnly={fieldsIsDisabled}
                       required={"Champ requis"}

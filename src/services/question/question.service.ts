@@ -1,7 +1,7 @@
 import { api } from "@/cores/constant/constant.resource.api";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import axios from "axios";
-import { QuestionTypeToInsert } from "./question.models";
+import { QuestionType } from "./question.models";
 
 const token = getLocalStorageItem("loginAccessToken");
 
@@ -52,9 +52,7 @@ export async function getQuestionPaginated(
 //   }
 // }
 
-export async function addQuestionService(
-  question: QuestionTypeToInsert
-): Promise<any> {
+export async function addQuestionService(question: QuestionType): Promise<any> {
   try {
     const response = await axios.post(
       `${api.question.index}`,

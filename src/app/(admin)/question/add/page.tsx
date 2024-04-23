@@ -25,12 +25,10 @@ import History, {
 } from "@/components/shared/history/history.component";
 import IconCursus from "@/components/shared/icons/iconCursus";
 import FormFieldsEditableCursus from "@/components/shared/form-fields-cursus/form.fields.cursus";
-import {
-  ChoiceOptions,
-  QuestionTypeToInsert,
-} from "@/services/question/question.models";
+import { Choice, QuestionType } from "@/services/question/question.models";
 import { addQuestionService } from "@/services/question/question.service";
 import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 const token = getLocalStorageItem("loginAccessToken") || "";
 
@@ -68,9 +66,12 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
   };
 
   const AddCursusSubmitService = async (data: any) => {
-    const question: QuestionTypeToInsert = {
+    const formatedChoice = formatChoice(data.choice);
+
+    const question: QuestionType = {
       ...data,
-      choice: getAllChoice(data.choice),
+      trueAnswer: formatedChoice[data.trueAnswer]._id,
+      choice: formatedChoice,
     };
     if (data.trueAnswer != null) {
       const response = await addQuestionService(question);
@@ -100,12 +101,11 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
       });
     }
   };
-  const getAllChoice = (choiceOptions: ChoiceOptions[]) => {
-    let tab: string[] = [];
-    choiceOptions.map((choiceOptions) => {
-      tab.push(choiceOptions.choiceOptions);
-    });
-    return tab;
+  const formatChoice = (choices: Choice[]) => {
+    return choices.map((choice: Choice) => ({
+      _id: uuidv4(),
+      choiceValue: choice.choiceValue,
+    }));
   };
 
   const tabsConstant = [
