@@ -11,7 +11,6 @@ export async function getQuestionPaginated(
   searchKeywords: string
 ): Promise<any> {
   try {
-    const token = getLocalStorageItem("loginAccessToken");
     const search = `&search=${searchKeywords}`;
     const response = await axios.get(
       `${
@@ -21,7 +20,7 @@ export async function getQuestionPaginated(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "api-key-quiz": "secretKey",
         },
       }
     );

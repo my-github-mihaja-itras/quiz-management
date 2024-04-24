@@ -18,7 +18,8 @@ export async function getQuizSessionPaginated(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
+          Authorization: `Bearer secretKey`,
         },
       }
     );
