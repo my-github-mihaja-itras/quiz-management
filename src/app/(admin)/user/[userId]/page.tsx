@@ -1,6 +1,6 @@
 "use client";
 import { EditUserById, GetUserById } from "@/services/user/user-service";
-import React, { ComponentType, useEffect, useRef, useState } from "react";
+import React, { ComponentType, useEffect, useState } from "react";
 
 import Loader from "@/components/loader/loader";
 import DetailsSection from "@/components/shared/details-section/details.section.components";

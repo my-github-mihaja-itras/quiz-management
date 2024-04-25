@@ -4,7 +4,7 @@ import {
   InputText,
   InputTextArea,
 } from "../shared/form/input-field/input-field";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import IconDelete from "../shared/icons/iconDelete";
 import IconAdd from "../shared/icons/iconAdd";
 import extractTokenInfo from "@/utils/extract.token";
