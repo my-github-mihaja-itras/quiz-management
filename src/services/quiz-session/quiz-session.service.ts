@@ -19,7 +19,7 @@ export async function getQuizSessionPaginated(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer secretKey`,
+          Authorization: `My key `,
         },
       }
     );
