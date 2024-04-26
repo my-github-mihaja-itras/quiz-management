@@ -20,7 +20,7 @@ export async function getQuestionPaginated(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "api-key-quiz": "secretKey",
+          "X-API-KEY": "secretKey",
         },
       }
     );
