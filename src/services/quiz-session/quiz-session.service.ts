@@ -8,7 +8,7 @@ export async function getQuizSessionPaginated(
   searchKeywords: string
 ): Promise<any> {
   try {
-    console.log("antsoina ==========")
+    console.log("antsoina ======= === ",process.env.API_KEY)
     const token = getLocalStorageItem("loginAccessToken");
     const search = `&search=${searchKeywords}`;
     const response = await axios.get(
@@ -19,7 +19,7 @@ export async function getQuizSessionPaginated(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `My key `,
+           Authorization: `Bearer ${process.env.API_KEY}`,
         },
       }
     );
