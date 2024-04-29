@@ -20,7 +20,7 @@ export async function getQuestionPaginated(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "X-API-KEY": "secretKey",
+          Authorization: `Bearer ${process.env.API_KEY}`,
         },
       }
     );
@@ -60,7 +60,7 @@ export async function addQuestionService(question: QuestionType): Promise<any> {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${process.env.API_KEY}`,
         },
       }
     );
