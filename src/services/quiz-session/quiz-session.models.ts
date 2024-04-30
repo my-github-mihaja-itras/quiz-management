@@ -3,6 +3,7 @@ import { User } from "../user/user.models";
 
 export interface QuizSession {
   _id?: string;
+  quizNumber:string;
   quiz: QuestionResult[];
   createdAt?: string;
 }

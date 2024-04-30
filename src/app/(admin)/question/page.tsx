@@ -61,7 +61,7 @@ const RoleList = () => {
   const roleColumns = [
     {
       name: "Numéro",
-      selector: (row: QuestionType) => row?._id,
+      selector: (row: QuestionType) => row?.questionNumber,
       sortable: true,
       cell: (row: QuestionType) => {
         return <div className={style.tabCell}>Question-{row?.questionNumber}</div>;
