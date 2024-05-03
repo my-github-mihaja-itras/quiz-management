@@ -11,7 +11,10 @@ import {
 } from "@/cores/filterConstants/role.constant";
 import { Group } from "@/services/group/group.models";
 import { getAllGroups } from "@/services/group/group.service";
-import { ParsedType } from "@/components/shared/filter/filter.constant";
+import {
+  FilterKeywords,
+  ParsedType,
+} from "@/components/shared/filter/filter.constant";
 import { Media } from "react-data-table-component";
 import { Role } from "@/services/role/role.models";
 import { GroupCell, RoleCell } from "@/components/shared/dropdown/cell.style";
@@ -28,6 +31,7 @@ import { useRouter } from "next/navigation";
 import { getQuizSessionPaginated } from "@/services/quiz-session/quiz-session.service";
 import { QuizSession } from "@/services/quiz-session/quiz-session.models";
 import { getDate, getTime } from "@/utils/date.utils";
+import { candidateDateFilterOptionConstant } from "@/cores/filterConstants/candidate.constant";
 
 const QuizList = () => {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -42,7 +46,7 @@ const QuizList = () => {
 
   const [totalPage, setTotalPage] = useState<number>(0);
 
-  const [updatedFilter, setUpdatedFilter] = useState(roleFilterConstant);
+  // const [updatedFilter, setUpdatedFilter] = useState(roleFilterConstant);
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<Boolean>(false);
 
@@ -54,7 +58,7 @@ const QuizList = () => {
 
   const tokenInfo: any = extractTokenInfo(token);
 
- 
+  const [filterKeywords, setFilterKeywords] = useState<FilterKeywords[]>([]);
 
   //Search Keywords
   const [searchKeywords, setSearchKeywords] = useState<string>("");
@@ -67,13 +71,12 @@ const QuizList = () => {
   const roleColumns = [
     {
       name: "Numéro",
-      selector: (row: QuizSession, index: number) => "Quiz-"+row?.quizNumber,
+      selector: (row: QuizSession, index: number) => "Quiz-" + row?.quizNumber,
       sortable: true,
     },
 
-
     {
-      name: "Date Utilisation",
+      name: "Date Création",
       selector: (row: QuizSession) => row?._id,
       sortable: true,
       cell: (row: QuizSession) => {
@@ -129,6 +132,7 @@ const QuizList = () => {
     const res = await getQuizSessionPaginated(
       currentPageNumber,
       rowPerPage,
+      filterKeywords,
       searchKeywords
     );
 
@@ -143,6 +147,10 @@ const QuizList = () => {
     setisLoading(false);
   };
 
+  const handleChangeFilter = (keywordsList: any) => {
+    console.log(keywordsList);
+    setFilterKeywords(keywordsList);
+  };
   // Extract keywords for search
   const handleSearchKeywordsChange = (keywords: any) => {
     setSearchKeywords(keywords);
@@ -195,28 +203,28 @@ const QuizList = () => {
       value: item.name,
     }));
 
-    setUpdatedFilter((prevFilters) => {
-      const newFilters = [
-        ...prevFilters,
-        {
-          title,
-          name,
-          type,
-          element: transformedData,
-        },
-      ];
-      return newFilters;
-    });
+    // setUpdatedFilter((prevFilters) => {
+    //   const newFilters = [
+    //     ...prevFilters,
+    //     {
+    //       title,
+    //       name,
+    //       type,
+    //       element: transformedData,
+    //     },
+    //   ];
+    //   return newFilters;
+    // });
   };
 
   useEffect(() => {
-    setUpdatedFilter(roleFilterConstant);
+    // setUpdatedFilter(roleFilterConstant);
     updateFiltersConstant(groups, "Groupe", "groups.name", ParsedType.LIST);
   }, [groups]);
 
   useEffect(() => {
     fetchData();
-  }, [currentPageNumber, rowPerPage, searchKeywords]);
+  }, [currentPageNumber, rowPerPage, searchKeywords, filterKeywords]);
 
   return (
     <>
@@ -240,13 +248,15 @@ const QuizList = () => {
           currentPageNumber={currentPageNumber}
           totalRowPerPage={rowPerPage}
           hasAddButton={false}
-          hasFilter={false}
+          hasFilter={true}
+          dateFilterOption={candidateDateFilterOptionConstant}
           hasChoiceFilter={false}
-          hasDateFilter={false}
+          hasDateFilter={true}
           conditionalFilter={roleFilterByItem}
           redirectLink={"/roles/add"}
           isLoading={isLoading}
           totalPageNumber={totalPage}
+          handleFilterKeywordsChange={handleChangeFilter}
           handleSearchKeywordsChange={handleSearchKeywordsChange}
           allDataToExport={roleData}
         />

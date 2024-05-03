@@ -1,19 +1,24 @@
+import { FilterKeywords } from "@/components/shared/filter/filter.constant";
 import { api } from "@/cores/constant/constant.resource.api";
+import { ExtractFilterKeywords } from "@/utils/extract.filterKeywords";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import axios from "axios";
 
 export async function getQuizSessionPaginated(
   page: number,
   pageSize: number,
-  searchKeywords: string
+  filterKeywords: FilterKeywords[],
+  searchKeywords: string,
+  
 ): Promise<any> {
   try {
     const token = getLocalStorageItem("loginAccessToken");
+    const keywords = ExtractFilterKeywords(filterKeywords);
     const search = `&search=${searchKeywords}`;
     const response = await axios.get(
       `${
         api.quizSession.list
-      }?page=${page.toString()}&pageSize=${pageSize.toString()}${search}`,
+      }?page=${page.toString()}&pageSize=${pageSize.toString()}${search}${keywords}`,
       {
         headers: {
           Accept: "application/json",

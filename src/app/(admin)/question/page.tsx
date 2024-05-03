@@ -24,6 +24,7 @@ import { QuizSession } from "@/services/quiz-session/quiz-session.models";
 import { getDate, getTime } from "@/utils/date.utils";
 import { QuestionType } from "@/services/question/question.models";
 import { getQuestionPaginated } from "@/services/question/question.service";
+import { candidateDateFilterOptionConstant } from "@/cores/filterConstants/candidate.constant";
 
 const RoleList = () => {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -38,6 +39,7 @@ const RoleList = () => {
 
   const [totalPage, setTotalPage] = useState<number>(0);
 
+ 
   const [updatedFilter, setUpdatedFilter] = useState(roleFilterConstant);
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<Boolean>(false);
@@ -249,13 +251,17 @@ const RoleList = () => {
           currentPageNumber={currentPageNumber}
           totalRowPerPage={rowPerPage}
           hasAddButton={true}
-          hasFilter={false}
+
+          hasFilter={true}
           hasChoiceFilter={false}
-          hasDateFilter={false}
+          hasDateFilter={true}
+          dateFilterOption={candidateDateFilterOptionConstant}
           conditionalFilter={roleFilterByItem}
+
           redirectLink={"/question/add"}
           isLoading={isLoading}
           totalPageNumber={totalPage}
+
           handleSearchKeywordsChange={handleSearchKeywordsChange}
           allDataToExport={roleData}
         />
