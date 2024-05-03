@@ -170,7 +170,7 @@ export const DateFilterComponent: React.FC<DateFilterProps> = ({
   return (
     <div className={style.dateFilter}>
       <div className={style.title}>
-        <IconCalendarBlue /> PÉRIODE DE CREATION
+        <IconCalendarBlue /> FILTRE PAR PÉRIODE 
       </div>
       <div className={style.dateSelect}>
         <label>Ajouter période</label>

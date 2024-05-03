@@ -32,6 +32,7 @@ import { getQuizSessionPaginated } from "@/services/quiz-session/quiz-session.se
 import { QuizSession } from "@/services/quiz-session/quiz-session.models";
 import { getDate, getTime } from "@/utils/date.utils";
 import { candidateDateFilterOptionConstant } from "@/cores/filterConstants/candidate.constant";
+import { quizDateFilterOptionConstant } from "@/cores/filterConstants/quiz-session.constant";
 
 const QuizList = () => {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -148,9 +149,9 @@ const QuizList = () => {
   };
 
   const handleChangeFilter = (keywordsList: any) => {
-    console.log(keywordsList);
     setFilterKeywords(keywordsList);
   };
+  
   // Extract keywords for search
   const handleSearchKeywordsChange = (keywords: any) => {
     setSearchKeywords(keywords);
@@ -249,7 +250,7 @@ const QuizList = () => {
           totalRowPerPage={rowPerPage}
           hasAddButton={false}
           hasFilter={true}
-          dateFilterOption={candidateDateFilterOptionConstant}
+          dateFilterOption={quizDateFilterOptionConstant}
           hasChoiceFilter={false}
           hasDateFilter={true}
           conditionalFilter={roleFilterByItem}

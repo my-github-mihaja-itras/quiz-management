@@ -10,7 +10,10 @@ import {
   roleFilterConstant,
 } from "@/cores/filterConstants/role.constant";
 import { Group } from "@/services/group/group.models";
-import { ParsedType } from "@/components/shared/filter/filter.constant";
+import {
+  FilterKeywords,
+  ParsedType,
+} from "@/components/shared/filter/filter.constant";
 import style from "./student.module.css";
 import ConfirmModal from "@/components/modal/confirmModal";
 import extractTokenInfo from "@/utils/extract.token";
@@ -25,6 +28,7 @@ import { getDate, getTime } from "@/utils/date.utils";
 import { QuestionType } from "@/services/question/question.models";
 import { getQuestionPaginated } from "@/services/question/question.service";
 import { candidateDateFilterOptionConstant } from "@/cores/filterConstants/candidate.constant";
+import { questionDateFilterOptionConstant } from "@/cores/filterConstants/question.constant";
 
 const RoleList = () => {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -39,7 +43,6 @@ const RoleList = () => {
 
   const [totalPage, setTotalPage] = useState<number>(0);
 
- 
   const [updatedFilter, setUpdatedFilter] = useState(roleFilterConstant);
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<Boolean>(false);
@@ -51,6 +54,8 @@ const RoleList = () => {
   const token = getLocalStorageItem("loginAccessToken") || "";
 
   const tokenInfo: any = extractTokenInfo(token);
+
+  const [filterKeywords, setFilterKeywords] = useState<FilterKeywords[]>([]);
 
   //Search Keywords
   const [searchKeywords, setSearchKeywords] = useState<string>("");
@@ -66,7 +71,9 @@ const RoleList = () => {
       selector: (row: QuestionType) => row?.questionNumber,
       sortable: true,
       cell: (row: QuestionType) => {
-        return <div className={style.tabCell}>Question-{row?.questionNumber}</div>;
+        return (
+          <div className={style.tabCell}>Question-{row?.questionNumber}</div>
+        );
       },
     },
 
@@ -140,6 +147,7 @@ const RoleList = () => {
     const res = await getQuestionPaginated(
       currentPageNumber,
       rowPerPage,
+      filterKeywords,
       searchKeywords
     );
 
@@ -152,6 +160,10 @@ const RoleList = () => {
     setRoleData(roleData);
 
     setisLoading(false);
+  };
+
+  const handleChangeFilter = (keywordsList: any) => {
+    setFilterKeywords(keywordsList);
   };
 
   // Extract keywords for search
@@ -227,7 +239,7 @@ const RoleList = () => {
 
   useEffect(() => {
     fetchData();
-  }, [currentPageNumber, rowPerPage, searchKeywords]);
+  }, [currentPageNumber, rowPerPage, searchKeywords, filterKeywords]);
 
   return (
     <>
@@ -251,17 +263,15 @@ const RoleList = () => {
           currentPageNumber={currentPageNumber}
           totalRowPerPage={rowPerPage}
           hasAddButton={true}
-
           hasFilter={true}
           hasChoiceFilter={false}
           hasDateFilter={true}
-          dateFilterOption={candidateDateFilterOptionConstant}
+          dateFilterOption={questionDateFilterOptionConstant}
           conditionalFilter={roleFilterByItem}
-
           redirectLink={"/question/add"}
           isLoading={isLoading}
           totalPageNumber={totalPage}
-
+          handleFilterKeywordsChange={handleChangeFilter}
           handleSearchKeywordsChange={handleSearchKeywordsChange}
           allDataToExport={roleData}
         />
