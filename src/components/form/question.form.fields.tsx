@@ -10,10 +10,7 @@ import IconAdd from "../shared/icons/iconAdd";
 import extractTokenInfo from "@/utils/extract.token";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import UseWindowSize from "@/cores/window/window.size";
-import {
-  Choice,
-  QuestionType,
-} from "@/services/question/question.models";
+import { Choice, QuestionType } from "@/services/question/question.models";
 
 const token = getLocalStorageItem("loginAccessToken") || "";
 const tokenInfo: any = extractTokenInfo(token);
@@ -128,10 +125,10 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
               <>
                 <div
                   key={`choice ${index}`}
-                  className={`${style.colDiv} ${style.gap4}`}
+                  className={`${ style.choiceItem} ${style.colDiv} ${style.gap4} `}
                 >
                   <div className={`${style.colDiv1} ${style.my5}`}>
-                    <InputTextArea
+                    <InputText
                       label={`${screenSize.width < 736 ? "Description" : ""}`}
                       onChange={`choice.${index}.choiceValue`}
                       fieldName={`choice.${index}.choiceValue`}

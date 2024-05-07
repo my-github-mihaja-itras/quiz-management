@@ -93,7 +93,11 @@ export const InputText = ({
         }`}
         style={{ color: readOnly ? "#909090" : "#5c5c5c" }}
       />
-      {onError && <span className={style.errorMessage}>{onError.message}</span>}
+      {onError && (
+        <span className={style.errorMessage}>
+          {onError.message ? onError.message : "Champ requis"}{" "}
+        </span>
+      )}
     </div>
   );
 };
@@ -170,15 +174,13 @@ export const InputTextArea = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           disabled={readOnly}
-          // rows={5}
-          // className={`${onError ? style.formInputError : style.formInput} ${
-          //   onChange && style.formInputNotEmpty
-          // }`}
           className={`${onError && style.textareaOnError} `}
           style={{ color: readOnly ? "#909090" : "#5c5c5c" }}
         />
       </div>
-      {onError && <span className={style.errorMessage}>Champ requis</span>}
+      {onError && (
+        <div className={style.textAreaContainerTextError}>Champ requis</div>
+      )}
     </>
   );
 };

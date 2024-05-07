@@ -215,6 +215,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 30px;
+  margin-top: 7px;
 }
 
 /**************** placeholder to label start ****************/
@@ -594,8 +595,15 @@
   border-color: #e74c3c;
 }
 
-.textAreaContainer {
-  /* background-color: red !important; */
+.textAreaContainerTextError {
+  display: flex;
+  justify-content: end;
+  align-content: start;
+  color: #ee0d0d;
+  font-family: "Lato";
+  font-size: 10px;
+  height: 20px;
+  font-weight: 400;
 }
 
 .textAreaContainer textarea {

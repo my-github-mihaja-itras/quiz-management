@@ -66,14 +66,16 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
   };
 
   const AddCursusSubmitService = async (data: any) => {
+    console.log(data)
     const formatedChoice = formatChoice(data.choice);
 
-    const question: QuestionType = {
-      ...data,
-      trueAnswer: formatedChoice[data.trueAnswer]._id,
-      choice: formatedChoice,
-    };
+
     if (data.trueAnswer != null) {
+      const question: QuestionType = {
+        ...data,
+        trueAnswer: formatedChoice[data.trueAnswer]._id,
+        choice: formatedChoice,
+      };
       const response = await addQuestionService(question);
       if (response.status === HttpStatusCode.Created) {
         setIsSuccess(true);
@@ -101,6 +103,7 @@ const SettingPage = ({ params }: { params: { candidateId: string } }) => {
       });
     }
   };
+
   const formatChoice = (choices: Choice[]) => {
     return choices.map((choice: Choice) => ({
       _id: uuidv4(),
