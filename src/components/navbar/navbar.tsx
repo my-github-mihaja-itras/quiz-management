@@ -78,7 +78,7 @@ export default function Navbar({ handleOpenMenu, menuIsOpen }: any) {
       <div className={styles.header}>
         <div className={styles.logo}>
           <Image
-            src="/resources/logo-ic-blanc.png"
+            src="/resources/logo.svg"
             alt="logo"
             width={200}
             height={75}

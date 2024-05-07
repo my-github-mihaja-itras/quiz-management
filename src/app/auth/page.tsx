@@ -140,11 +140,11 @@ export default function LoginPage() {
         {isLoading && <Loader></Loader>}
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <div className={`${genericStyle.formHeader} ${style.header}`}>
-            Welcome Innovator !
+            Welcome to you !
           </div>
           <div className={genericStyle.formContent}>
             <InputField
-              label="Identifiant IC ou adresse e-mail"
+              label="Identifiant ou adresse e-mail"
               type="text"
               onChange={login}
               errors={errors?.login && errors?.login?.type}

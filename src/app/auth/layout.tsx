@@ -15,9 +15,9 @@ export default function AuthLayout({
         <div className={style.left}>
           <Image
             className={style.logo}
-            src="/resources/logo.png"
+            src="/resources/quizLogo.svg"
             alt="logo"
-            width={237}
+            width={300}
             height={65}
             objectFit="cover"
           />

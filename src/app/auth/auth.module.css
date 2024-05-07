@@ -18,10 +18,11 @@
 .logo {
   position: absolute;
   top: 40px;
-  left: 50%;
-  width: 237px;
+  left: 60%;
+  width: 300px;
   height: 65px;
   transform: translateX(-100%);
+  /* background-color: red; */
 }
 
 .text {
