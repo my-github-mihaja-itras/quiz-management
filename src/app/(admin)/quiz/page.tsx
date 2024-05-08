@@ -1,29 +1,22 @@
 "use client";
 
-import { DeleteRoleById, getRolePaginated } from "@/services/role/role.service";
+import { DeleteRoleById } from "@/services/role/role.service";
 import { useEffect, useState } from "react";
 import ListSection from "@/components/shared/liste-section/listSection.component";
 import Loader from "@/components/loader/loader";
 
 import {
   roleFilterByItem,
-  roleFilterConstant,
 } from "@/cores/filterConstants/role.constant";
 import { Group } from "@/services/group/group.models";
-import { getAllGroups } from "@/services/group/group.service";
 import {
   FilterKeywords,
   ParsedType,
 } from "@/components/shared/filter/filter.constant";
-import { Media } from "react-data-table-component";
-import { Role } from "@/services/role/role.models";
-import { GroupCell, RoleCell } from "@/components/shared/dropdown/cell.style";
 import style from "./student.module.css";
-import { addOpacityToColor } from "@/utils/color.utils";
 import ConfirmModal from "@/components/modal/confirmModal";
 import extractTokenInfo from "@/utils/extract.token";
 import { ActionType, EntityName } from "@/cores/constant/constant.history";
-import { getCountUserByRole } from "@/services/user/user-service";
 import { getLocalStorageItem } from "@/utils/localStorage.utils";
 import Dropdown from "@/components/shared/dropdown/dropDown.component";
 import IconEdit from "@/components/shared/icons/iconEdit";
@@ -31,7 +24,6 @@ import { useRouter } from "next/navigation";
 import { getQuizSessionPaginated } from "@/services/quiz-session/quiz-session.service";
 import { QuizSession } from "@/services/quiz-session/quiz-session.models";
 import { getDate, getTime } from "@/utils/date.utils";
-import { candidateDateFilterOptionConstant } from "@/cores/filterConstants/candidate.constant";
 import { quizDateFilterOptionConstant } from "@/cores/filterConstants/quiz-session.constant";
 
 const QuizList = () => {
@@ -244,23 +236,9 @@ const QuizList = () => {
       label: item.name,
       value: item.name,
     }));
-
-    // setUpdatedFilter((prevFilters) => {
-    //   const newFilters = [
-    //     ...prevFilters,
-    //     {
-    //       title,
-    //       name,
-    //       type,
-    //       element: transformedData,
-    //     },
-    //   ];
-    //   return newFilters;
-    // });
   };
 
   useEffect(() => {
-    // setUpdatedFilter(roleFilterConstant);
     updateFiltersConstant(groups, "Groupe", "groups.name", ParsedType.LIST);
   }, [groups]);
 

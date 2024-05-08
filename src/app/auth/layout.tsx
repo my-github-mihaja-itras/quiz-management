@@ -23,7 +23,7 @@ export default function AuthLayout({
           />
           <div className={style.backgroundMobile}>
             <Image
-              src="/resources/authentificationMobile.png"
+              src="/resources/background.png"
               alt="Image"
               className={style.image}
               width={1000}

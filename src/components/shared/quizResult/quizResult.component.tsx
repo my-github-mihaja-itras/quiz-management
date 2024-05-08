@@ -15,7 +15,7 @@ const QuizResult = ({ quizSession }: { quizSession: QuizSession | any }) => {
             <div className={style.question}>
               {`Question ${quizItemIndex + 1} ) `}{" "}
               {quizItem.question.questionAsked}
-            </div>
+            </div >
             {quizItem.question.choice.map(
               (choice: Choice, choiceIndex: number) => (
                 <div
@@ -31,7 +31,7 @@ const QuizResult = ({ quizSession }: { quizSession: QuizSession | any }) => {
                   key={`choice${choiceIndex}`}
                 >
                   <div className={style.text}>
-                    {`${choiceIndex + 1}- `}
+                    {`${choiceIndex + 1}- `}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
                     {choice.choiceValue as string}
                   </div>
                   <div className={style.containerInputRadio}>

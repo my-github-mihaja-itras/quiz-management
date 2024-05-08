@@ -88,7 +88,7 @@ export default function Navbar({ handleOpenMenu, menuIsOpen }: any) {
         </div>
         <div className={styles.logoMobile}>
           <Image
-            src="/resources/logo-mobile.png"
+            src="/resources/quizLogo.svg"
             alt="logo"
             width={115}
             height={27}
