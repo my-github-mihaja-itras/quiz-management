@@ -93,8 +93,7 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
   const handleChangeEditableFields = () => {
     setFieldsIsEditable(!fieldsIsDisabled);
   };
-
-  const PersonalSubmitService = async (data: any) => {};
+ 
 
   const screenSize = UseWindowSize();
 
@@ -112,53 +111,6 @@ const StudentDetail = ({ params }: { params: { quizSessionId: string } }) => {
           <Loader />
         ) : (
           <>
-            {/* <Details>
-              {!dataNotFound ? (
-                <Tabs
-                  tabsConstant={[
-                    {
-                      label: "Infos persos",
-                      content: (
-                        <>
-                          {formFieldsData && (
-                            <FormFieldsEditable
-                              handleChangeEditableFields={
-                                handleChangeEditableFields
-                              }
-                              fieldsIsDisabled={fieldsIsDisabled}
-                              formData={formFieldsData}
-                              submitService={PersonalSubmitService}
-                              haveActionButton={false}
-                              haveImageProfile={true}
-                            >
-                              {userData ? (
-                                <UserQuizFormFields
-                                  fieldsIsDisabled={fieldsIsDisabled}
-                                  data={userData}
-                                />
-                              ) : (
-                                <Loader />
-                              )}
-                            </FormFieldsEditable>
-                          )}
-                        </>
-                      ),
-                    },
-                  ]}
-                />
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  Le compte d'utilisateur n'est pas trouvé
-                </div>
-              )}
-            </Details> */}
             <Processing title="Résultats du Quiz" titleIcon={<IconQuiz />}>
               <QuizResult quizSession={quizSession} />
             </Processing>

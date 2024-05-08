@@ -6,6 +6,7 @@ import style from "./quizResult.module.css";
 import { Choice } from "@/services/question/question.models";
 
 const QuizResult = ({ quizSession }: { quizSession: QuizSession | any }) => {
+  console.log(quizSession)
   return (
     <div className={style.layout}>
       {quizSession.quiz.map(

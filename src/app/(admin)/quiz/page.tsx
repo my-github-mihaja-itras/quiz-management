@@ -91,11 +91,41 @@ const QuizList = () => {
       },
     },
     {
+      name: "Nbre Bonne Réponse",
+      selector: (row: QuizSession) => row?._id,
+      sortable: true,
+      cell: (row: QuizSession) => {
+        const { correctCount } = getQuizResults(row);
+        return <div className={style.tabCell}>{correctCount}</div>;
+      },
+    },
+    {
       name: "Nbre Question",
       selector: (row: QuizSession) => row?._id,
       sortable: true,
       cell: (row: QuizSession) => {
         return <div className={style.tabCell}>{row?.quiz.length}</div>;
+      },
+    },
+    {
+      name: "Résultat",
+      selector: (row: QuizSession) => row?._id,
+      sortable: true,
+      cell: (row: QuizSession) => {
+        const { correctCount, incorrectCount } = getQuizResults(row);
+        const passed: boolean = incorrectCount > correctCount;
+        return (
+          <div className={style.tabCell}>
+            <img
+              src={`/resources/${
+                passed ? "IconCheckRed" : "IconCheckGreen"
+              }.svg`}
+              className={style.image}
+              width={20}
+              height={20}
+            />
+          </div>
+        );
       },
     },
     {
@@ -129,6 +159,17 @@ const QuizList = () => {
       },
     },
   ];
+  const getQuizResults = (quizSession: QuizSession) => {
+    let correctCount: number = 0;
+    let incorrectCount: number = 0;
+
+    quizSession.quiz.forEach((quiz) => {
+      quiz.isValidAnswer ? correctCount++ : incorrectCount++;
+    });
+
+    return { correctCount, incorrectCount };
+  };
+
   const fetchData = async () => {
     const res = await getQuizSessionPaginated(
       currentPageNumber,
@@ -151,7 +192,7 @@ const QuizList = () => {
   const handleChangeFilter = (keywordsList: any) => {
     setFilterKeywords(keywordsList);
   };
-  
+
   // Extract keywords for search
   const handleSearchKeywordsChange = (keywords: any) => {
     setSearchKeywords(keywords);
