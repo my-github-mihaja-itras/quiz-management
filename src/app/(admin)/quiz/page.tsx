@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import ListSection from "@/components/shared/liste-section/listSection.component";
 import Loader from "@/components/loader/loader";
 
-import {
-  roleFilterByItem,
-} from "@/cores/filterConstants/role.constant";
+import { roleFilterByItem } from "@/cores/filterConstants/role.constant";
 import { Group } from "@/services/group/group.models";
 import {
   FilterKeywords,
@@ -38,8 +36,6 @@ const QuizList = () => {
   const [isLoading, setisLoading] = useState<boolean>(true);
 
   const [totalPage, setTotalPage] = useState<number>(0);
-
-  // const [updatedFilter, setUpdatedFilter] = useState(roleFilterConstant);
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<Boolean>(false);
 
