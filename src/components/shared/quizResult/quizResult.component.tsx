@@ -22,16 +22,15 @@ const QuizResult = ({ quizSession }: { quizSession: QuizSession | any }) => {
                   className={`
               ${style.containerChoice}
                ${quizItem.question.trueAnswer == choice._id && style.trueAnswer}
-               ${
-                 quizItem.userAnswer == choice._id &&
-                 choice._id != quizItem.question.trueAnswer &&
-                 style.falseAnswer
-               }
+               ${quizItem.userAnswer == choice._id &&
+                    choice._id != quizItem.question.trueAnswer &&
+                    style.falseAnswer
+                    }
                `}
                   key={`choice${choiceIndex}`}
                 >
                   <div className={style.text}>
-                    {`${choiceIndex + 1}- `}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                    {`${choiceIndex + 1}- `}
                     {choice.choiceValue as string}
                   </div>
                   <div className={style.containerInputRadio}>
@@ -45,11 +44,10 @@ const QuizResult = ({ quizSession }: { quizSession: QuizSession | any }) => {
                   <div className={style.containerIcon}>
                     {choice._id === quizItem.userAnswer && (
                       <img
-                        src={`/resources/${
-                          choice._id == quizItem.question.trueAnswer
+                        src={`/resources/${choice._id == quizItem.question.trueAnswer
                             ? "IconCheckGreen"
                             : "IconCheckRed"
-                        }.svg`}
+                          }.svg`}
                         className={style.image}
                         width={20}
                         height={20}
