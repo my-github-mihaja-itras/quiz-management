@@ -1,7 +1,7 @@
 import style from "./auth.module.css";
 import Image from "next/image";
 export const metadata = {
-  title: "CM Login Page",
+  title: "Login Page",
   description: "Campus management app",
 };
 export default function AuthLayout({
