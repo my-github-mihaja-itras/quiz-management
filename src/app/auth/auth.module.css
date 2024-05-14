@@ -72,9 +72,9 @@
   .logo {
     position: absolute;
     top: 24px;
-    left: 35%;
-    width: 115px;
-    height: 27px;
+    left: 60%;
+    width: 215px;
+    height: 37px;
     transform: translateX(-100%);
   }
   .header {
