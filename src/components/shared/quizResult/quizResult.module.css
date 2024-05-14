@@ -4,8 +4,6 @@
   padding: 0px 20px 20px 20px;
   height: 81vh;
   overflow-y: scroll;
- 
- 
 }
 .question {
   display: flex;
@@ -30,10 +28,10 @@
   font-size: 12px;
   pointer-events: none;
 }
-.containerInputRadio{
-    display: flex;
-    justify-content: end;
-    /* background-color: blue; */
+.containerInputRadio {
+  display: flex;
+  justify-content: end;
+  /* background-color: blue; */
 }
 .containerIcon {
   min-width: 20px;
@@ -50,4 +48,22 @@
 }
 .falseAnswer {
   background-color: #faeded;
+}
+
+@media screen and (max-width: 730px) {
+  .layout {
+    padding: 0px 10px 10px 10px;
+  }
+  .question {
+    
+    padding: 5px 10px 5px 10px;
+ 
+  }
+  .containerChoice {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 0.1fr 0.1fr;
+    padding: 5px 10px 5px 10px;
+    gap: 10px;
+  }
 }
