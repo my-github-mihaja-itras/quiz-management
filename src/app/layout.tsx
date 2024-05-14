@@ -3,8 +3,8 @@ import "./globals.css";
 import { PrivilegeProvider } from "@/context/privileges.context";
 
 export const metadata: Metadata = {
-  title: "Campus-Management",
-  description: "Campus-Management Application",
+  title: "QuizUp Management",
+  description: "QuizUp Management Application",
 };
 
 export default function RootLayout({
