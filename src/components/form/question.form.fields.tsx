@@ -87,17 +87,13 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
         <div className={style.form}>
           <div className={style.formBody}>
             <br />
-            {screenSize.width >= 736 && (
-              <div className={`${style.colDiv} ${style.gap4}`}>
-                <div className={`${style.colDiv1} ${style.fieldLabel}`}>
-                  Sujet
-                </div>
-                <div className={`${style.btnIcon}`}></div>
-              </div>
-            )}
-            <div className={`${style.colDiv1} ${style.my5} `}>
+            <div className={`  ${style.gap4}`}>
+              <div className={`  ${style.fieldLabel}`}>Sujet</div>
+              <div className={`${style.btnIcon}`}></div>
+            </div>
+
+            <div className={`  ${style.containerInputSubject} `}>
               <InputTextArea
-                label={`${screenSize.width < 736 ? "Nom" : ""}`}
                 onChange={`questionAsked`}
                 fieldName={`questionAsked`}
                 register={register}
@@ -107,29 +103,22 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
               />
             </div>
 
-            {screenSize.width >= 736 && (
-              <div className={`${style.colDiv} ${style.gap4}`}>
-                <div className={`${style.colDiv1} ${style.fieldLabel}`}>
-                  Choix
-                </div>
-                <div
-                  className={`${style.colDiv1} ${style.fieldLabel} ${style.centerField}`}
-                >
-                  Réponse
-                </div>
-                <div className={`${style.btnIcon}`}></div>
+            <div className={`${style.choiceTitle}  ${style.gap4}`}>
+              <div className={`  ${style.fieldLabel}`}>Choix</div>
+              <div className={` ${style.fieldLabel} ${style.centerField}`}>
+                Réponse
               </div>
-            )}
+              <div className={`${style.btnIcon}`}></div>
+            </div>
 
             {questionToInsertFields.map((questionItem, index) => (
               <>
                 <div
                   key={`choice ${index}`}
-                  className={`${ style.choiceItem} ${style.colDiv} ${style.gap4} `}
+                  className={`${style.choiceItem}  ${style.gap4} `}
                 >
-                  <div className={`${style.colDiv1} ${style.my5}`}>
+                  <div className={`${style.colDiv1}  `}>
                     <InputText
-                      label={`${screenSize.width < 736 ? "Description" : ""}`}
                       onChange={`choice.${index}.choiceValue`}
                       fieldName={`choice.${index}.choiceValue`}
                       register={register}
@@ -152,7 +141,7 @@ export const QuestionFormFields: React.FC<QuestionFieldsProps> = ({
                     />
                   </div>
                   <>
-                    <div className={`${style.btnIcon} ${style.my5}`}>
+                    <div className={`${style.btnIcon}`}>
                       <div className={style.removeField}>
                         {!fieldsIsDisabled && (
                           <button

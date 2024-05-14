@@ -1,6 +1,6 @@
 .formContainer {
   display: grid;
-  gap: 20px;
+  /* gap: 20px; */
   height: 72vh;
 }
 
@@ -42,16 +42,22 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
-.choiceItem{
+.containerInputSubject {
+  margin: 30px 0 30px 0;
+}
+.choiceTitle {
+  /* background-color: rebeccapurple; */
+  display: grid;
+  grid-template-columns: 1fr 0.2fr 0.045fr;
+}
+.choiceItem {
   /* background-color: #007bff; */
   height: 65px;
+  display: grid;
+  grid-template-columns: 1fr 0.2fr 0.045fr;
 }
 
 .form .colDiv {
-  display: grid;
-  grid-template-columns: 1fr 0.2fr 0.045fr;
-
 }
 
 .form .colDivWithoutIcon {
@@ -63,6 +69,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background-color: #007bff; */
+  height: 40px;
 }
 /* Styles pour les input radio personnalisés */
 .customRadio {
@@ -94,11 +102,11 @@
   background-color: #007bff;
 }
 
-.customRadioSuccess{
+.customRadioSuccess {
   border: 2px solid #ccc !important ;
 }
 .customRadioOnError {
-  border: 2px solid #f70505 ;
+  border: 2px solid #f70505;
 }
 
 .gap1 {
@@ -129,9 +137,10 @@
 }
 .btnIcon {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 5px;
+  /* justify-content: center;
+  align-items: center; */
+  margin: 0px 0px 20px 0px;
+  /* background-color: rebeccapurple; */
 }
 .addField {
   width: auto;
@@ -182,6 +191,12 @@
     height: 100%;
     padding: 10px;
   }
+  .form {
+    padding-right: 0px;
+  }
+  .containerInputSubject {
+    margin: 10px 0 10px 0;
+  }
   .form .colDiv1 {
     display: grid;
     grid-template-columns: 1fr;
@@ -189,17 +204,21 @@
 
   .form .colDiv2 {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns:  1fr;
   }
-
-  .form .colDiv {
-    display: grid;
-    grid-template-columns: 1fr;
+  .containerRadio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #007bff; */
   }
-
-  .form .colDivWithoutIcon {
-    display: grid;
-    grid-template-columns: 1fr;
+  .fieldLabel {
+    font-family: "Roboto";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    color: #5c5c5c;
   }
   .inputGroupTwo {
     margin-top: 0;
@@ -208,7 +227,6 @@
     gap: 30px;
   }
 
- 
   .my5 {
     margin: 30px 0 5px 0;
   }

@@ -30,7 +30,7 @@ export const InputText = ({
   defaultValue,
   onError,
 }: {
-  label: string;
+  label?: string;
   register: UseFormRegister<any>;
   fieldName: string;
   validate?: string;
@@ -70,13 +70,16 @@ export const InputText = ({
       ${isFocused || onChange ? style.formInputFocused : ""}
       `}
     >
-      <label
-        className={`${style.placeholder} ${
-          isFocused ? style.labelWhenFocused : style.labelWhenNotFocused
-        } `}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          className={`${style.placeholder} ${
+            isFocused ? style.labelWhenFocused : style.labelWhenNotFocused
+          } `}
+        >
+          {label}
+        </label>
+      )}
+
       <input
         type="text"
         autoComplete="new-password"
@@ -115,7 +118,7 @@ export const InputTextArea = ({
   defaultValue,
   onError,
 }: {
-  label: string;
+  label?: string;
   register: UseFormRegister<any>;
   fieldName: string;
   validate?: string;
@@ -158,13 +161,16 @@ export const InputTextArea = ({
       
       `}
       >
-        <label
-          className={`${style.placeholder} ${
-            isFocused ? style.labelWhenFocused : style.labelWhenNotFocused
-          } `}
-        >
-          {label}
-        </label>
+        {label && (
+          <label
+            className={`${style.placeholder} ${
+              isFocused ? style.labelWhenFocused : style.labelWhenNotFocused
+            } `}
+          >
+            {label}
+          </label>
+        )}
+
         <textarea
           {...register(fieldName as any, {
             value: value,
