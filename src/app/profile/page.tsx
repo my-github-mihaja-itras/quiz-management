@@ -7,7 +7,7 @@ import UseGuard from "@/components/routGuard/routGuard";
 import ErrorModal, { ErrorMessage } from "@/components/modal/errorModal";
 import Tabs from "@/components/shared/tabs/tabs.components";
 import { HistoryType } from "@/components/shared/history/history.constant";
-import { GetHistoryByTargetId } from "@/services/history/history.service";
+ 
 import extractTokenInfo from "@/utils/extract.token";
 import ProfileFormFields from "@/components/form/profile.form.fields";
 import DetailsProfile from "@/components/shared/details-profile/details.profile.components";
@@ -71,17 +71,11 @@ const UserDetail = () => {
     }
   };
 
-  const getHistoryData = async () => {
-    const response = await GetHistoryByTargetId(tokenInfo._id);
-
-    if (response.statusText === "OK") {
-      setHistoryData(response.data.data);
-    }
-  };
+ 
 
   useEffect(() => {
     getUserData();
-    getHistoryData();
+ 
   }, []);
 
   const handleChangeEditableFields = () => {
